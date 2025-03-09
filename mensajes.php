@@ -23,6 +23,7 @@ $artify->setSettings("searchbox", true);
 $artify->buttonHide("submitBtnSaveBack");
 $artify->crudTableCol(array("id", "user_message", "bot_response"));
 $artify->fieldDisplayOrder(array("id", "user_message", "bot_response"));
+$artify->colRename("id", "ID");
 $artify->colRename("user_message", "Mensaje de usuario");
 $artify->colRename("bot_response", "Respuesta de Bot");
 $artify->fieldRenameLable("user_message", "Mensaje de usuario");
