@@ -14,12 +14,18 @@ $settings["dbtype"] = $_ENV['DB_TYPE'];
 $settings["characterset"] = $_ENV["CHARACTER_SET"];
 
 $artify = new Artify(false, "", "", $settings);
+$artify->formDisplayInPopup();
 $artify->setSettings("editbtn", true);
 $artify->setSettings("viewbtn", false);
 $artify->setSettings("delbtn", true);
 $artify->setSettings("searchbox", true);
+$artify->buttonHide("submitBtnSaveBack");
 $artify->crudTableCol(array("id", "user_message", "bot_response"));
 $artify->fieldDisplayOrder(array("id", "user_message", "bot_response"));
+$artify->colRename("user_message", "Mensaje de usuario");
+$artify->colRename("bot_response", "Respuesta de Bot");
+$artify->fieldRenameLable("user_message", "Mensaje de usuario");
+$artify->fieldRenameLable("bot_response", "Respuesta de Bot");
 echo $artify->dbTable("messages")->render();
 
 ?>
