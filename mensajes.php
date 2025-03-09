@@ -15,6 +15,7 @@ $settings["characterset"] = $_ENV["CHARACTER_SET"];
 
 $artify = new Artify(false, "", "", $settings);
 $artify->formDisplayInPopup();
+$artify->tableHeading("Mensajes");
 $artify->setSettings("editbtn", true);
 $artify->setSettings("viewbtn", false);
 $artify->setSettings("delbtn", true);
