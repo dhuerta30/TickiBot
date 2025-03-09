@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artibot - Chatbot</title>
+    <title>tickibot - Chatbot</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
@@ -37,11 +37,11 @@
 </div>
 
 <div class="chat-container">
-    <div class="chat-header">Artibot - Soporte en tiempo real</div>
+    <div class="chat-header">Tickibot - Soporte en tiempo real</div>
     <div id="chatbox">
         <div class="message bot d-block w-100 ocultar_bienvenida">
             <img src="boot.png" alt="Bot">
-            <div class="mt-2">Bienvenido a Artiboot Tu Soporte en tiempo Real para una mejor atención ingresa tus Datos</div>
+            <div class="mt-2">Bienvenido a Tickibot Tu Soporte en tiempo Real para una mejor atención ingresa tus Datos</div>
             <div class="form-group mt-3">
                 <label><strong>Nombre:</strong></label>
                 <input type="text" class="form-control mb-2" id="nombre" placeholder="Ingresa tu Nombre">
@@ -103,7 +103,7 @@ function sendMessage() {
     chatbox.scrollTop = chatbox.scrollHeight;
 
     // Enviar el mensaje al backend
-    fetch("artiboot.php", {
+    fetch("tickibot.php", {
         method: "POST",
         body: JSON.stringify({ message: message }),
         headers: { "Content-Type": "application/json" }
