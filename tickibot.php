@@ -8,7 +8,7 @@ $userMessage = $data["message"];
 
 $Queryfy = new Queryfy();
 $Queryfy->connect("localhost", "root", "", "tickibot_db");
-$Queryfy->where("user_message", "%$userMessage%", "LIKE");
+$Queryfy->where("user_message", $userMessage, "=");
 $result = $Queryfy->select("messages");
 
 $botResponse = "No tengo una respuesta exacta para eso, pero puedo intentar ayudarte.";
