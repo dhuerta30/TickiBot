@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 require "artify/artifycrud.php";
 
 $settings["script_url"] = $_ENV['URL_ArtifyCrud'];
@@ -23,7 +25,8 @@ $html_template = '
    <div class="container mt-5">
     <div class="row d-flex justify-content-center">
         <div class="col-md-6">
-            <div class="card px-5 py-5" id="form1">
+            <div class="card px-5 py-5 bg-light" id="form1">
+                <center><img class="w-25" src="boot.png"></center>
                 <div class="form-data" v-if="!submitted">
                     <div class="form-group"> 
                         <label>Rut</label> 
@@ -35,7 +38,7 @@ $html_template = '
                         {clave}
                         <p class="pdocrud_help_block help-block form-text with-errors"></p>
                     </div>
-                    <div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-dark w-100">Acceder</button> </div>
+                    <div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-primary w-100">Acceder</button> </div>
                 </div>
             </div>
         </div>
@@ -44,6 +47,7 @@ $html_template = '
 $artify->buttonHide("submitBtn");
 $artify->buttonHide("cancel");
 $artify->set_template($html_template);
+$artify->addCallback("before_select", "beforeloginCallback");
 echo $artify->dbTable("usuario")->render("selectform");
 ?>
 <div id="artify-ajax-loader">

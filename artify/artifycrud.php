@@ -2300,52 +2300,35 @@ function editar_usuario($data, $obj){
 }
 
 function beforeloginCallback($data, $obj) {
-    $pass = $data['usuario']['password'];
-    $user = $data['usuario']['usuario'];
-    $license_key = $_POST['license_key'];
+    $pass = $data['usuario']['clave'];
+    $rut = $data['usuario']['rut'];
 
-    $secret_key = $_ENV['CSRF_SECRET'];
+    if ($rut) {
+        $pdomodel = $obj->getPDOModelObj();
+        $field = isset($data['usuario']['rut']) ? "rut" : "usuario";
+        $pdomodel->where($field, $rut);
+        $hash = $pdomodel->select("usuario");
 
-    $queryfy = $obj->getQueryfyObj();
-    $queryfy->where("usuario", $user);
-    $hash = $queryfy->select("usuario");
-
-    if ($hash) {
-        if (password_verify($pass, $hash[0]['password'])) {
-           
-            try {
-                $decoded = JWT::decode($license_key, new Key($secret_key, 'HS256'));
-            
-                if (!isset($decoded->exp) || $decoded->exp < time()) {
-                    echo "La licencia ha expirado.";
-                    die();
-                }
-            
+       if ($hash) {
+            if (password_verify($pass, $hash[0]['clave'])) {
                 @session_start();
                 $_SESSION["data"] = $data;
-            
-                $obj->setLangData("no_data", "Bienvenido");
-                $obj->formRedirection($_ENV['BASE_URL']."modulos");
-            
-            } catch (Exception $e) {
-                $error = $e->getMessage();
-            
-                if ($error == "Wrong number of segments") {
-                    $error = "Debe ingresar 256 carácteres";
-                } else if($error == "Expired token") {
-                    $error = "Token Expirado";
-                }
                 
-                echo "Licencia no válida: " . $error;
+                //$obj->formRedirection($_ENV["BASE_URL"]."Home/datos_paciente");
+            } else {
+                echo "El usuario o la contraseña ingresada no coinciden";
                 die();
             }
-
         } else {
-            echo "El usuario o la contraseña ingresada no coinciden.";
+            if (isset($data['usuario']['rut'])) {
+                echo "El RUT ingresado no coincide";
+            } else {
+                echo "El usuario ingresado no existe";
+            }
             die();
         }
     } else {
-        echo "Datos erroneos.";
+        echo "Datos erróneos";
         die();
     }
 
