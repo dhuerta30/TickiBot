@@ -1,8 +1,9 @@
 <?php 
 session_start();
-if(!isset($_SESSION["data"])){
+/*if(!isset($_SESSION["data"])){
     header("Location: index.php");
-}
+}*/
+print_r($_SESSION["data"]);
 ?>
 <!DOCTYPE html>
 <html lang="es">

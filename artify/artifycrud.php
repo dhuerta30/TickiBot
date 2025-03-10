@@ -2313,6 +2313,7 @@ function beforeloginCallback($data, $obj) {
                 @session_start();
                 $_SESSION["data"] = $data;
                 $obj->setLangData("no_data", "Bienvenido");
+                $obj->formRedirection("bot.php");
             } else {
                 echo "El usuario o la contraseña ingresada no coinciden";
                 die();
