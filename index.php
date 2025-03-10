@@ -31,12 +31,12 @@ $html_template = '
                     <div class="form-group"> 
                         <label>Rut</label> 
                         {rut}
-                        <p class="pdocrud_help_block help-block form-text with-errors"></p>
+                        <p class="ertify_help_block help-block form-text with-errors"></p>
                     </div>
                     <div class="form-group"> 
                         <label>Contraseña</label> 
                         {clave}
-                        <p class="pdocrud_help_block help-block form-text with-errors"></p>
+                        <p class="ertify_help_block help-block form-text with-errors"></p>
                     </div>
                     <div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-primary w-100">Acceder</button> </div>
                 </div>
