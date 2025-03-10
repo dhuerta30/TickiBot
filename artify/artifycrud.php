@@ -2304,27 +2304,21 @@ function beforeloginCallback($data, $obj) {
     $rut = $data['usuario']['rut'];
 
     if ($rut) {
-        $pdomodel = $obj->getPDOModelObj();
-        $field = $data['usuario']['rut'];
-        $pdomodel->where($field, $rut);
-        $hash = $pdomodel->select("usuario");
-
-       if ($hash) {
+        $queryfy = $obj->getQueryfyObj();
+        $queryfy->where("rut", $rut);
+        $hash = $queryfy->select("usuario");
+        
+        if (!empty($hash) && isset($hash[0]['clave'])) {
             if (password_verify($pass, $hash[0]['clave'])) {
                 @session_start();
                 $_SESSION["data"] = $data;
-                
-                //$obj->formRedirection($_ENV["BASE_URL"]."Home/datos_paciente");
+                header("Location: http://localhost/TickiBot/bot.php");
             } else {
                 echo "El usuario o la contraseña ingresada no coinciden";
                 die();
             }
         } else {
-            if (isset($data['usuario']['rut'])) {
-                echo "El RUT ingresado no coincide";
-            } else {
-                echo "El usuario ingresado no existe";
-            }
+            echo "El RUT ingresado no coincide";
             die();
         }
     } else {

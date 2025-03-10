@@ -3,7 +3,6 @@ session_start();
 if(!isset($_SESSION["data"])){
     header("Location: index.php");
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="es">

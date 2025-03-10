@@ -1,6 +1,4 @@
-<?php 
-
-session_start();
+<?php
 
 require "artify/artifycrud.php";
 
@@ -33,7 +31,7 @@ $html_template = '
                         {rut}
                         <p class="ertify_help_block help-block form-text with-errors"></p>
                     </div>
-                    <div class="form-group"> 
+                    <div class="form-group">
                         <label>Contraseña</label> 
                         {clave}
                         <p class="ertify_help_block help-block form-text with-errors"></p>
@@ -48,6 +46,7 @@ $artify->buttonHide("submitBtn");
 $artify->buttonHide("cancel");
 $artify->set_template($html_template);
 $artify->addCallback("before_select", "beforeloginCallback");
+$artify->fieldTypes("clave", "password");
 echo $artify->dbTable("usuario")->render("selectform");
 ?>
 <div id="artify-ajax-loader">
