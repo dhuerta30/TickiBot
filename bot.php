@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if(!isset($_SESSION["data"]["usuario"]["rut"])){
+if(!isset($_SESSION["data"])){
     header("Location: index.php");
 }
 ?>
