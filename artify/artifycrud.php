@@ -2312,7 +2312,8 @@ function beforeloginCallback($data, $obj) {
             if (password_verify($pass, $hash[0]['clave'])) {
                 @session_start();
                 $_SESSION["data"] = $data;
-                header("Location: http://localhost/TickiBot/bot.php");
+                $obj->setLangData("no_data", "Bienvenido");
+                $obj->formRedirection("bot.php");
             } else {
                 echo "El usuario o la contraseña ingresada no coinciden";
                 die();
