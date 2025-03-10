@@ -2305,7 +2305,7 @@ function beforeloginCallback($data, $obj) {
 
     if ($rut) {
         $pdomodel = $obj->getPDOModelObj();
-        $field = isset($data['usuario']['rut']) ? "rut" : "usuario";
+        $field = $data['usuario']['rut'];
         $pdomodel->where($field, $rut);
         $hash = $pdomodel->select("usuario");
 
