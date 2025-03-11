@@ -1,0 +1,96 @@
+.artify-table-container .page-title{
+    background: #34495e;
+    color: #f0e68c;
+}
+.artify-table-container .artify-table-heading h3 {
+    float: left;
+    font-size: 20px;
+    margin: 0;
+}
+.artify-button-add{
+    color: #fff !important;
+}
+.artify-button-delete-all{
+    color: #000 !important;
+}
+.artify-table th{
+    color: #f0e68c;
+}
+.artify-table{
+    background: #34495e;
+    color: #fff;
+}
+.artify-table tr:nth-child(odd),.artify-table tr:nth-child(even){
+    background:#34495e !important;
+}
+
+.artify-export-options ul li a{
+    background: #34495e;
+    color: #f0e68c;
+}
+.pdo-search-cols a,.artify-button-delete-all{
+    color: #fff !important;
+}
+.artify-pagination .pagination>li>a{
+    color:#000;
+    cursor: pointer;
+}
+.artify-pagination .pagination>.active>a{
+    background-color: #34495e;
+    border-color: #34495e;
+    color: #f0e68c;
+}
+.panel-body{
+        background-color: #C0C0C0;
+}
+.artify-top-buttons p{
+    color: #632f1c;
+}
+.artify-button-view{
+    margin-right: 7px;
+}
+.artify-button-edit{
+    margin-right: 7px;
+}
+.artify-button-delete{
+    margin-right: 7px;
+}
+
+a.artify-actions.artify-button.artify-button-export {
+    color: #000;
+}
+.table>thead:first-child>tr:first-child>th{
+    border-top: 0;
+    padding: 4px 25px;  
+    white-space: nowrap;
+}
+.artify-table-container .table tbody tr td {
+    border-right: 1px solid #d5d5d5;
+    white-space: nowrap;
+    padding: 4px 10px;  
+    color: #fff;
+    text-align: center;
+    width: 1552px;
+}
+.artify-table-container table tr.artify-header-row th{
+    padding: 4px 10px;    
+}
+.artify-table-container table tr.artify-header-row th {
+    border-right: 1px solid #d5d5d5;
+}
+
+/* Hover Buttons */
+.artify-table-container table tr.artify-header-row th {
+    padding: 9px 15px;    
+}
+.artify-table tbody tr.artify-data-row {
+    height: 50px;
+}
+.artify-table tbody tr.artify-data-row:hover td.artify-row-actions {
+    position: sticky;
+    right: 0;
+    border-left: none;
+    margin-top: 0;
+    border-bottom: none;
+    border-top: none;
+}
