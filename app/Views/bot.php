@@ -55,7 +55,7 @@
                                         <div><?=$chat["mensaje_usuario"]?></div>
                                     </div>
 
-                                    <div id="loading" class="message bot w-100">
+                                    <div class="message bot d-block w-100">
                                         <img src="<?=$_ENV["BASE_URL"]?>theme/img/boot.png" alt="Bot">
                                         <?=$chat["respuesta_bot"]?>
                                     </div>
