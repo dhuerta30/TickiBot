@@ -2541,6 +2541,37 @@ class HomeController
 	}
 
 	public function bot(){
+
+		$api_key = "AIzaSyCV3jdhYoIywDeFJmBL-l3EuDnOttX0wLU";
+		$data = [
+			"contents" => [
+				[
+					"parts" => [
+						["text" => "Hola como estas?"]
+					]
+				]
+			]
+		];
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' . $api_key);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+		curl_setopt($ch, CURLOPT_HTTPHEADER, [
+			'Content-Type: application/json',
+		]);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+
+		$response = curl_exec($ch);
+
+		if (curl_errno($ch)) {
+			echo "cURL Error: " . curl_error($ch);
+		} else {
+			$respuesta = json_decode($response, true);
+			var_dump($respuesta);
+		}
+		curl_close($ch);
+
 		View::render('bot');
 	}
 
@@ -2561,8 +2592,8 @@ class HomeController
 			if (!empty($result)) {
 				// Obtener la primera respuesta relevante
 				$botResponse = $result[0]['bot_response'];
-			}
-			
+			} 
+
 			echo json_encode(["response" => $botResponse]);
 		}
 	}
