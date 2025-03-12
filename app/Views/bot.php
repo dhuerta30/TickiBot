@@ -44,6 +44,27 @@
                                     $usuario = $_SESSION['usuario'][0]["usuario"];
                                     $historial_chat = App\Controllers\HomeController::historial_chat($usuario);
                                 ?>
+
+                                <?php if($historial_chat): ?>
+                                    
+                                    <?php foreach($historial_chat as $chat): ?>
+                                    <div class="message user w-100 d-flex align-items-center">
+                                        <div class="mr-2">
+                                            <img src="<?=$_ENV["BASE_URL"]?>app/libs/artify/uploads/<?=$_SESSION["usuario"][0]["avatar"]?>" alt="<?=$usuario?>" style="width: 70px; height: 70px; border-radius: 50%;">
+                                        </div>
+                                        <div><?=$chat["mensaje_usuario"]?></div>
+                                    </div>
+
+                                    <div id="loading" class="message bot w-100">
+                                        <img src="<?=$_ENV["BASE_URL"]?>theme/img/boot.png" alt="Bot">
+                                        <?=$chat["respuesta_bot"]?>
+                                    </div>
+                                    <?php endforeach; ?>
+
+                                <?php else: ?>
+                                
+                                <?php endif; ?>
+
                             </div>
                             <div class="chat-footer">
                                 <button class="btn btn-info" data-toggle="modal" data-target="#sugerencias"><i class="fa-solid fa-info"></i></button>
