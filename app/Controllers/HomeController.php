@@ -2569,15 +2569,15 @@ class HomeController
 				$botResponse = $result[0]['bot_response'];
 			} else {
 				$botResponse = $this->getGeminiResponse($message);
-
-				$Queryfy->insert("historial_chat", array(
-					"mensaje_usuario" => $message,
-					"respuesta_bot" => $botResponse,
-					"fecha" => $fecha,
-					"hora" => $hora,
-					"usuario" => $usuario
-				));
 			}
+
+			$Queryfy->insert("historial_chat", array(
+				"mensaje_usuario" => $message,
+				"respuesta_bot" => $botResponse,
+				"fecha" => $fecha,
+				"hora" => $hora,
+				"usuario" => $usuario
+			));
 
 			echo json_encode(["response" => $botResponse]);
 		}
