@@ -2583,6 +2583,14 @@ class HomeController
 		}
 	}
 
+	public static function historial_chat($usuario){
+		$artify = DB::ArtifyCrud();
+		$Queryfy = $artify->getQueryfyObj();
+		$Queryfy->where("usuario", $usuario);
+		$data = $Queryfy->select("histrotial_chat");
+		return $data;
+	}
+
 	private function getGeminiResponse($message){
 		$api_key = "AIzaSyCV3jdhYoIywDeFJmBL-l3EuDnOttX0wLU";
 		$data = [

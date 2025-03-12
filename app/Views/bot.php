@@ -40,7 +40,11 @@
                         <div class="chat-container">
                             <div class="chat-header">Tickibot - Soporte en tiempo real </div>
                             <div id="chatbox">
-                                
+                                <?php 
+                                    $usuario = $_SESSION['usuario'][0]["usuario"];
+                                    $historial_chat = App\Controllers\HomeController::historial_chat($usuario);
+                                    print_r($historial_chat);
+                                ?>
                             </div>
                             <div class="chat-footer">
                                 <button class="btn btn-info" data-toggle="modal" data-target="#sugerencias"><i class="fa-solid fa-info"></i></button>
