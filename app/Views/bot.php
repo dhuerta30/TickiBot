@@ -43,7 +43,6 @@
                                 <?php 
                                     $usuario = $_SESSION['usuario'][0]["usuario"];
                                     $historial_chat = App\Controllers\HomeController::historial_chat($usuario);
-                                    print_r($historial_chat);
                                 ?>
                             </div>
                             <div class="chat-footer">

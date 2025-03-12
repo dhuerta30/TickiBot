@@ -2587,7 +2587,7 @@ class HomeController
 		$artify = DB::ArtifyCrud();
 		$Queryfy = $artify->getQueryfyObj();
 		$Queryfy->where("usuario", $usuario);
-		$data = $Queryfy->select("histrotial_chat");
+		$data = $Queryfy->select("historial_chat");
 		return $data;
 	}
 
