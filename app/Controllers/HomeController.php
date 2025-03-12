@@ -2584,9 +2584,13 @@ class HomeController
 	}
 
 	public static function historial_chat($usuario){
+		date_default_timezone_set("America/Santiago");
+		$fecha = date('Y-m-d');
+
 		$artify = DB::ArtifyCrud();
 		$Queryfy = $artify->getQueryfyObj();
 		$Queryfy->where("usuario", $usuario);
+		$Queryfy->where("fecha", $fecha);
 		$data = $Queryfy->select("historial_chat");
 		return $data;
 	}
