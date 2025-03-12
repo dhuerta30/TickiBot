@@ -2548,6 +2548,12 @@ class HomeController
 		$request = new Request();
 
 		if ($request->getMethod() === 'POST') {
+
+			date_default_timezone_set("America/Santiago");
+			$fecha = date('Y-m-d');
+			$hora = date('G:i:s');
+			$usuario = $_SESSION["usuario"][0]["usuario"];
+
 			$data = json_decode(file_get_contents("php://input"), true);
 			$message = $data["message"];
 
@@ -2563,6 +2569,14 @@ class HomeController
 				$botResponse = $result[0]['bot_response'];
 			} else {
 				$botResponse = $this->getGeminiResponse($message);
+
+				$Queryfy->insert("historial_chat", array(
+					"mensaje_usuario" => $message,
+					"respuesta_bot" => $botResponse,
+					"fecha" => $fecha,
+					"hora" => $hora,
+					"usuario" => $usuario
+				));
 			}
 
 			echo json_encode(["response" => $botResponse]);
@@ -2601,7 +2615,7 @@ class HomeController
 				$botResponse = $respuesta['candidates'][0]['content']['parts'][0]['text'];
 			}
 		}
-		
+
 		curl_close($ch);
 		return $botResponse;
 	}
