@@ -117,7 +117,15 @@
 function sendMessage() {
     let input = document.getElementById("userInput");
     let message = input.value.trim();
-    if (message === "") return;
+    if (message === ""){
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Ingresa un mensaje para continuar",
+            confirmButtonText: "Aceptar"
+        });
+        return;
+    }
 
     let chatbox = document.getElementById("chatbox");
 
