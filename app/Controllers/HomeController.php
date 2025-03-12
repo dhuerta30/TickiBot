@@ -2647,6 +2647,8 @@ class HomeController
 		$artify->setSettings("function_filter_and_search", true);
 		$artify->colRename("user_message", "Mensajes del usuario");
 		$artify->colRename("bot_response", "Respuesta del Bot");
+		$artify->fieldRenameLable("user_message", "Mensajes del usuario");
+		$artify->fieldRenameLable("bot_response", "Respuesta del Bot");
 		$render = $artify->dbTable("messages")->render();
 		View::render('chat', [
 			'render' => $render
