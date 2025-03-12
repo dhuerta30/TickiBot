@@ -65,7 +65,8 @@
 
                             </div>
                             <div class="chat-footer">
-                                <button class="btn btn-info" data-toggle="modal" data-target="#sugerencias"><i class="fa-solid fa-info"></i></button>
+                                <button class="btn btn-info" title="Auto sugerencias" data-toggle="modal" data-target="#sugerencias"><i class="fa-solid fa-info"></i></button>
+                                <button class="btn btn-danger clear_chat" title="Limpiar todo el Historial"><i class="fa fa-trash"></i></button>
                                 <input type="text" id="userInput" class="form-control" placeholder="Escribe y presiona enter...">
                                 <button class="btn btn-primary" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
                             </div>
@@ -307,5 +308,20 @@ document.addEventListener("click", resetInactivityTimer);
 
 // Iniciar temporizador al cargar la página
 resetInactivityTimer();
+
+
+$(document).on("click", ".clear_chat", function(){
+    Swal.fire({
+        icon: "warning",
+        text: "¿Estas seguro que deseas Limpiar el Historial de mensajes?",
+        confirmButtonText: "Aceptar",
+        showCancelButton: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire("Saved!", "", "success");
+        }
+    });
+});
+
 </script>
 <?php require "layouts/footer.php"; ?>
