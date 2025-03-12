@@ -18,6 +18,7 @@ $router->get('/recuperar', 'LoginController@reset');
 
 $router->get('/modulos', 'HomeController@modulos');
 $router->get('/bot', 'HomeController@bot');
+$router->get('/chat', 'HomeController@historico_chat');
 $router->get('/usuarios', 'HomeController@usuarios');
 $router->get('/perfil', 'HomeController@perfil');
 $router->get('/respaldos', 'HomeController@respaldos');

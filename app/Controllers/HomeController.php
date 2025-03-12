@@ -2631,4 +2631,24 @@ class HomeController
 		curl_close($ch);
 		return $botResponse;
 	}
+
+	public function historico_chat(){
+		$artify = DB::ArtifyCrud();
+		$artify->tableHeading("Lista de Mensajes");
+		$artify->setSettings("searchbox", true);
+		$artify->setSettings("printBtn", false);
+		$artify->setSettings("pdfBtn", false);
+		$artify->setSettings("csvBtn", false);
+		$artify->setSettings("excelBtn", false);
+		$artify->setSettings("viewbtn", false);
+		$artify->setSettings('editbtn', true);
+		$artify->setSettings('delbtn', true);
+		$artify->setSettings("function_filter_and_search", true);
+		$artify->colRename("user_message", "Mensajes del usuario");
+		$artify->colRename("bot_response", "Respuesta del Bot");
+		$render = $artify->dbTable("messages")->render();
+		View::render('chat', [
+			'render' => $render
+		]);
+	}
 }
