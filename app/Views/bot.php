@@ -60,8 +60,6 @@
                                         <?=$chat["respuesta_bot"]?>
                                     </div>
                                     <?php endforeach; ?>
-
-                                <?php else: ?>
                                 
                                 <?php endif; ?>
 
