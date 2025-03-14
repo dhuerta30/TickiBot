@@ -2549,6 +2549,8 @@ class HomeController
 		$artify->fieldTypes("user_message", "select");
 		$artify->fieldDataBinding("user_message", "messages", "user_message as messages", "user_message", "db");
 		$artify->setLangData("login", "Usar");
+		$artify->buttonHide("submitBtn");
+		$artify->buttonHide("cancel");
 		$render = $artify->dbTable("messages")->render("selectform");
 		$select2 = $artify->loadPluginJsCode("select2",".frases");
 
