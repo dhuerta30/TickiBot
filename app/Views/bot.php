@@ -320,7 +320,6 @@ document.addEventListener("click", resetInactivityTimer);
 // Iniciar temporizador al cargar la página
 resetInactivityTimer();
 
-
 $(document).on("click", ".clear_chat", function(){
     Swal.fire({
         icon: "warning",
@@ -329,7 +328,13 @@ $(document).on("click", ".clear_chat", function(){
         showCancelButton: true
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire("Saved!", "", "success");
+            $(".user").remove();
+            $(".bot").remove();
+            Swal.fire({
+                icon: "success",
+                text: "Se ha Limpiado el Historial!",
+                confirmButtonText: "Aceptar"
+            });
         }
     });
 });
