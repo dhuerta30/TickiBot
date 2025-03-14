@@ -2541,7 +2541,21 @@ class HomeController
 	}
 
 	public function bot(){
-		View::render('bot');
+		$artify = DB::ArtifyCrud();
+		$artify->addPlugin("select2");
+		$artify->fieldCssClass("user_message", array("frases"));
+		$artify->formFields(array("user_message"));
+		$artify->fieldRenameLable("user_message", "");
+		$artify->fieldTypes("user_message", "select");
+		$artify->fieldDataBinding("user_message", "messages", "user_message as messages", "user_message", "db");
+		$artify->setLangData("login", "Usar");
+		$render = $artify->dbTable("messages")->render("selectform");
+		$select2 = $artify->loadPluginJsCode("select2",".frases");
+
+		View::render('bot', [
+			'render' => $render,
+			'select2' => $select2
+		]);
 	}
 
 	public function mensajes(){

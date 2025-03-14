@@ -3,6 +3,15 @@
 <?php require "layouts/sidebar.php"; ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="<?=$_ENV["BASE_URL"]?>css/sweetalert2.min.css" rel="stylesheet">
+<style>
+    .select2 {
+        width: 100%!important;
+    }
+
+    .select2-container .select2-selection--single {
+        height: 38px!important;
+    }
+</style>
 <div class="content-wrapper">
     <section class="content">
         <div class="card mt-4">
@@ -23,16 +32,8 @@
                             <div class="modal-body">
                                 
                                 <label>Sugenercias</label>
-                                <select class="form-control" name="frases" id="frases">
-                                    <option value="">Seleccionar</option>
-
-                                    <?php $sugerencias = App\Controllers\HomeController::sugerencia_chat(); ?>
-                                    <?php foreach($sugerencias as $palabras): ?>
-                                        <option value="<?=$palabras["user_message"]?>"><?=$palabras["user_message"]?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <button class="btn btn-primary mt-3" id="usar">Usar</button>
-
+                               <?=$render?>
+                               <?=$select2?>
                             </div>
                             </div>
                         </div>
@@ -66,7 +67,7 @@
 
                             </div>
                             <div class="chat-footer">
-                                <button class="btn btn-info" title="Auto sugerencias" data-toggle="modal" data-target="#sugerencias"><i class="fa-solid fa-info"></i></button>
+                                <button class="btn btn-info" title="Auto sugerencias" data-toggle="modal" data-target="#sugerencias"><i class="fab fa-facebook-messenger"></i></button>
                                 <button class="btn btn-danger clear_chat" title="Limpiar todo el Historial"><i class="fa fa-trash"></i></button>
                                 <input type="text" id="userInput" class="form-control" placeholder="Escribe tu mensaje y presiona enter...">
                                 <button class="btn btn-primary" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
@@ -76,12 +77,13 @@
                     </div>
                 </div>
 
+                <?=$select2?>
+
             </div>
         </div>
     </section>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="<?=$_ENV["BASE_URL"]?>js/sweetalert2.all.min.js"></script>
 <script>
@@ -206,7 +208,7 @@ function sendMessage() {
     input.value = "";
 }
 
-document.getElementById("usar").addEventListener("click", function(){
+$("#usar").on("click", function(){
     let frases = document.getElementById("frases").value.trim();
 
     if(frases != ""){
