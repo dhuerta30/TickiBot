@@ -2595,6 +2595,15 @@ class HomeController
 		return $data;
 	}
 
+
+	public static function sugerencia_chat(){
+		$artify = DB::ArtifyCrud();
+		$Queryfy = $artify->getQueryfyObj();
+		$data = $Queryfy->select("messages");
+		return $data;
+	}
+
+
 	private function getGeminiResponse($message){
 		$api_key = "AIzaSyCV3jdhYoIywDeFJmBL-l3EuDnOttX0wLU";
 		$data = [

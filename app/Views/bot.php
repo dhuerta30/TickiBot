@@ -25,10 +25,11 @@
                                 <label>Sugenercias</label>
                                 <select class="form-control" name="frases" id="frases">
                                     <option value="">Seleccionar</option>
-                                    <option value="hola">hola</option>
-                                    <option value="¿cómo estás?">¿cómo estás?</option>
-                                    <option value="¿qué puedes hacer?">¿qué puedes hacer?</option>
-                                    <option value="adiós">adiós</option>
+
+                                    <?php $sugerencias = App\Controllers\HomeController::sugerencia_chat(); ?>
+                                    <?php foreach($sugerencias as $palabras): ?>
+                                        <option value="<?=$palabras["user_message"]?>"><?=$palabras["user_message"]?></option>
+                                    <?php endforeach; ?>
                                 </select>
                                 <button class="btn btn-primary mt-3" id="usar">Usar</button>
 
