@@ -4,12 +4,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="<?=$_ENV["BASE_URL"]?>css/sweetalert2.min.css" rel="stylesheet">
 <style>
-    .select2 {
+    .chosen-container {
         width: 100%!important;
-    }
-
-    .select2-container .select2-selection--single {
-        height: 38px!important;
     }
 </style>
 <div class="content-wrapper">
@@ -33,7 +29,7 @@
                                 
                                 <label>Sugenercias</label>
                                <?=$render?>
-                               <?=$select2?>
+                               <?=$chosen?>
                             </div>
                             </div>
                         </div>
@@ -77,7 +73,6 @@
                     </div>
                 </div>
 
-                <?=$select2?>
 
             </div>
         </div>

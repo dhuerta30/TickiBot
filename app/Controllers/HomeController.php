@@ -2542,7 +2542,7 @@ class HomeController
 
 	public function bot(){
 		$artify = DB::ArtifyCrud();
-		$artify->addPlugin("select2");
+		$artify->addPlugin("chosen");
 		$artify->fieldCssClass("user_message", array("frases"));
 		$artify->formFields(array("user_message"));
 		$artify->fieldRenameLable("user_message", "");
@@ -2552,11 +2552,11 @@ class HomeController
 		$artify->buttonHide("submitBtn");
 		$artify->buttonHide("cancel");
 		$render = $artify->dbTable("messages")->render("selectform");
-		$select2 = $artify->loadPluginJsCode("select2",".frases");
+		$chosen = $artify->loadPluginJsCode("chosen",".frases");
 
 		View::render('bot', [
 			'render' => $render,
-			'select2' => $select2
+			'chosen' => $chosen
 		]);
 	}
 
@@ -2672,8 +2672,10 @@ class HomeController
 		$artify->setSettings("function_filter_and_search", true);
 		$artify->colRename("user_message", "Mensajes del usuario");
 		$artify->colRename("bot_response", "Respuesta del Bot");
+		$artify->colRename("images", "Imagen");
 		$artify->fieldRenameLable("user_message", "Mensajes del usuario");
 		$artify->fieldRenameLable("bot_response", "Respuesta del Bot");
+		$artify->fieldTypes("images", "FILE_NEW");
 		$render = $artify->dbTable("messages")->render();
 		View::render('chat', [
 			'render' => $render
