@@ -346,9 +346,9 @@ window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogn
 
 if (window.SpeechRecognition) {
     const recognition = new SpeechRecognition();
-    recognition.lang = "es-ES"; // Idioma español
-    recognition.continuous = true; // Sigue escuchando
-    recognition.interimResults = true; // Muestra texto en tiempo real
+    recognition.lang = "es-ES";
+    recognition.continuous = true;
+    recognition.interimResults = true;
 
     let finalText = "";
 
@@ -370,7 +370,11 @@ if (window.SpeechRecognition) {
     };
 
     document.getElementById("start").addEventListener("click", () => {
-        recognition.start();
+        try {
+            recognition.start();
+        } catch (error) {
+            console.error("Error al iniciar reconocimiento:", error);
+        }
     });
 
     document.getElementById("stop").addEventListener("click", () => {
