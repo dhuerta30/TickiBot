@@ -2621,7 +2621,7 @@ class HomeController
 
 
 	private function getGeminiResponse($message){
-		$api_key = "AIzaSyCV3jdhYoIywDeFJmBL-l3EuDnOttX0wLU";
+		$api_key = $_ENV["API_GEMINI"];
 		$data = [
 			"contents" => [
 				[
