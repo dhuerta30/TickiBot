@@ -341,43 +341,39 @@ $(document).on("click", ".clear_chat", function(){
     });
 });
 
-
-// Verificar compatibilidad con el navegador
+// Verifica si el navegador soporta la API
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 if (window.SpeechRecognition) {
     const recognition = new SpeechRecognition();
-    recognition.lang = "es-ES"; // Configurar idioma
-    recognition.continuous = true; // Mantener la escucha
-    recognition.interimResults = true; // Mostrar texto mientras se habla
+    recognition.lang = "es-ES"; // Idioma español
+    recognition.continuous = true; // Sigue escuchando
+    recognition.interimResults = true; // Muestra texto en tiempo real
 
-    const startButton = document.getElementById("start");
-    const stopButton = document.getElementById("stop");
-    const output = document.getElementById("output");
-
-    let textoFinal = "";
+    let finalText = "";
 
     recognition.onresult = (event) => {
-        let textoTemporal = "";
+        let tempText = "";
         for (let i = event.resultIndex; i < event.results.length; i++) {
             if (event.results[i].isFinal) {
-                textoFinal += event.results[i][0].transcript + " ";
+                finalText += event.results[i][0].transcript + " ";
             } else {
-                textoTemporal += event.results[i][0].transcript;
+                tempText += event.results[i][0].transcript;
             }
         }
-        output.innerText = textoFinal + textoTemporal;
+        document.getElementById("output").innerText = finalText + tempText;
     };
 
     recognition.onerror = (event) => {
-        console.error("Error en el reconocimiento:", event.error);
+        console.error("Error:", event.error);
+        alert("Error en el reconocimiento de voz: " + event.error);
     };
 
-    startButton.addEventListener("click", () => {
+    document.getElementById("start").addEventListener("click", () => {
         recognition.start();
     });
 
-    stopButton.addEventListener("click", () => {
+    document.getElementById("stop").addEventListener("click", () => {
         recognition.stop();
     });
 } else {
