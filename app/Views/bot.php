@@ -66,6 +66,11 @@
                             <div class="chat-footer">
                                 <button class="btn btn-info" title="Auto sugerencias" data-toggle="modal" data-target="#sugerencias"><i class="fab fa-facebook-messenger"></i></button>
                                 <button class="btn btn-danger clear_chat" title="Limpiar todo el Historial"><i class="fa fa-trash"></i></button>
+
+                                <button class="btn btn-secondary" id="start"><i class="fa fa-play"></i></button>
+                                <button class="btn btn-warning" id="stop"><i class="fa fa-stop"></i></button>
+                                <p id="output">Aquí aparecerá el texto...</p>
+
                                 <input type="text" id="userInput" class="form-control" placeholder="Escribe tu mensaje y presiona enter...">
                                 <button class="btn btn-primary" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
                             </div>
@@ -335,6 +340,49 @@ $(document).on("click", ".clear_chat", function(){
         }
     });
 });
+
+
+// Verificar compatibilidad con el navegador
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+if (window.SpeechRecognition) {
+    const recognition = new SpeechRecognition();
+    recognition.lang = "es-ES"; // Configurar idioma
+    recognition.continuous = true; // Mantener la escucha
+    recognition.interimResults = true; // Mostrar texto mientras se habla
+
+    const startButton = document.getElementById("start");
+    const stopButton = document.getElementById("stop");
+    const output = document.getElementById("output");
+
+    let textoFinal = "";
+
+    recognition.onresult = (event) => {
+        let textoTemporal = "";
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+            if (event.results[i].isFinal) {
+                textoFinal += event.results[i][0].transcript + " ";
+            } else {
+                textoTemporal += event.results[i][0].transcript;
+            }
+        }
+        output.innerText = textoFinal + textoTemporal;
+    };
+
+    recognition.onerror = (event) => {
+        console.error("Error en el reconocimiento:", event.error);
+    };
+
+    startButton.addEventListener("click", () => {
+        recognition.start();
+    });
+
+    stopButton.addEventListener("click", () => {
+        recognition.stop();
+    });
+} else {
+    alert("Tu navegador no soporta reconocimiento de voz.");
+}
 
 </script>
 <?php require "layouts/footer.php"; ?>
