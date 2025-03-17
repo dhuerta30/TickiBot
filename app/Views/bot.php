@@ -69,7 +69,8 @@
 
                                 <button class="btn btn-secondary" id="start"><i class="fa fa-play"></i></button>
                                 <button class="btn btn-warning" id="stop"><i class="fa fa-stop"></i></button>
-                                <p id="output">Aquí aparecerá el texto...</p>
+                                <textarea id="text" rows="6" cols="50" placeholder="Aquí se mostrará el texto..."></textarea>
+                                <br>
 
                                 <input type="text" id="userInput" class="form-control" placeholder="Escribe tu mensaje y presiona enter...">
                                 <button class="btn btn-primary" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
@@ -87,6 +88,7 @@
 <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="<?=$_ENV["BASE_URL"]?>js/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
 <script>
     $(document).on("artify_after_ajax_action", function(event, obj, data){
         var dataAction = obj.getAttribute('data-action');
@@ -341,44 +343,29 @@ $(document).on("click", ".clear_chat", function(){
     });
 });
 
-// Verifica si el navegador soporta la API
-window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (annyang) {
+    annyang.setLanguage("es-ES");
 
-if (window.SpeechRecognition) {
-    const recognition = new SpeechRecognition();
-    recognition.lang = "es-ES";
-    recognition.continuous = true;
-    recognition.interimResults = true;
+    let texto = document.getElementById("text");
 
-    let finalText = "";
-
-    recognition.onresult = (event) => {
-        let tempText = "";
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-            if (event.results[i].isFinal) {
-                finalText += event.results[i][0].transcript + " ";
-            } else {
-                tempText += event.results[i][0].transcript;
-            }
+    let commands = {
+        "*speech": (speech) => {
+            texto.value += speech + " ";
         }
-        document.getElementById("output").innerText = finalText + tempText;
     };
 
-    recognition.onerror = (event) => {
-        console.error("Error:", event.error);
-        alert("Error en el reconocimiento de voz: " + event.error);
-    };
+    annyang.addCommands(commands);
 
+    // Botón para iniciar el reconocimiento de voz
     document.getElementById("start").addEventListener("click", () => {
-        try {
-            recognition.start();
-        } catch (error) {
-            console.error("Error al iniciar reconocimiento:", error);
-        }
+        annyang.start();
+        console.log("Reconocimiento de voz iniciado...");
     });
 
+    // Botón para detener el reconocimiento de voz
     document.getElementById("stop").addEventListener("click", () => {
-        recognition.stop();
+        annyang.abort();
+        console.log("Reconocimiento de voz detenido.");
     });
 } else {
     alert("Tu navegador no soporta reconocimiento de voz.");
