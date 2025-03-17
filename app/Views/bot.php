@@ -49,13 +49,13 @@
                                     <?php foreach($historial_chat as $chat): ?>
                                     <div class="message user w-100 d-flex align-items-center">
                                         <div class="mr-2">
-                                            <img src="<?=$_ENV["BASE_URL"]?>app/libs/artify/uploads/<?=$_SESSION["usuario"][0]["avatar"]?>" alt="<?=$usuario?>" style="width: 70px; height: 70px; border-radius: 50%;">
+                                            <img src="<?=$_ENV["BASE_URL"]?>app/libs/artify/uploads/<?=$_SESSION["usuario"][0]["avatar"]?>" alt="<?=$usuario?>" style="width: 50px; height: 50px; border-radius: 50%;">
                                         </div>
                                         <div><?=$chat["mensaje_usuario"]?></div>
                                     </div>
 
                                     <div class="message bot d-block w-100">
-                                        <img src="<?=$_ENV["BASE_URL"]?>theme/img/boot.png" alt="Bot">
+                                        <img src="<?=$_ENV["BASE_URL"]?>theme/img/boot.png" alt="Bot" style="width: 50px; height: 50px; border-radius: 50%;">
                                         <?=$chat["respuesta_bot"]?>
                                     </div>
                                     <?php endforeach; ?>
