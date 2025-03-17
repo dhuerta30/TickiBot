@@ -27,9 +27,10 @@
                             </div>
                             <div class="modal-body">
                                 
-                                <label>Sugenercias</label>
+                                <label>Sugenercias para preguntar al Bot</label>
                                <?=$render?>
                                <?=$chosen?>
+                               <a href="javascript:;" class="btn btn-primary usar">Usar</a>
                             </div>
                             </div>
                         </div>
@@ -203,8 +204,8 @@ function sendMessage() {
     input.value = "";
 }
 
-$("#usar").on("click", function(){
-    let frases = document.getElementById("frases").value.trim();
+$(document).on("click", ".usar", function(){
+    let frases = document.querySelector(".frases").value.trim();
 
     if(frases != ""){
         document.getElementById("userInput").value = frases;
