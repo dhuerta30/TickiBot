@@ -27,7 +27,7 @@
                             </div>
                             <div class="modal-body">
                                 
-                                <label>Sugenercias para preguntar al Bot</label>
+                                <label>Sugerencias para preguntar al Bot</label>
                                <?=$render?>
                                <?=$chosen?>
                                <a href="javascript:;" class="btn btn-primary usar">Usar</a>
