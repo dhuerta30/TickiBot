@@ -7,6 +7,7 @@
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="<?=$_ENV["BASE_URL"]?>theme/plugins/fontawesome-free/css/all.min.css">
+    <link href="<?=$_ENV["BASE_URL"]?>css/sweetalert2.min.css" rel="stylesheet">
 </head>
 <body>
 <style>
@@ -29,5 +30,24 @@
 <div id="artify-ajax-loader">
     <img width="300" src="<?=$_ENV["BASE_URL"]?>app/libs/artify/images/ajax-loader.gif" class="artify-img-ajax-loader"/>
 </div>
+<script src="<?=$_ENV["BASE_URL"]?>js/sweetalert2.all.min.js"></script>
+<script>
+     $(document).on("artify_after_submission", function(event, obj, data) {
+        $('.artify_error').hide();
+        $('.artify_message').hide();
+
+        Swal.fire({
+            title: "Genial!",
+            text: "Bienvenido",
+            icon: "success",
+            confirmButtonText: "Aceptar",
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="<?=$_ENV["BASE_URL"]?>login";
+            }
+        });
+     });
+</script>
 </body>
 </html>
