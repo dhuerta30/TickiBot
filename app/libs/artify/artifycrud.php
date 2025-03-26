@@ -129,21 +129,19 @@ function despues_de_insertar_funcionarios($data, $obj){
             }
         }
 
-        $response = [];
-
         if ($menuMarcado) {
-            $response['success'][] = 'Menús asignados correctamente';
+            $obj->setLangData("success", "Menús asignados correctamente");
         }
 
         if ($menuDesmarcado) {
-            $response['success'][] = 'Menús Actualizados correctamente';
+            $obj->setLangData("success", "Menús Actualizados correctamente");
         }
 
         if (!$menuMarcado && !$menuDesmarcado) {
-            $response['error'][] = 'Todos los menús ya fueron asignados previamente';
+            $error_msg = array("message" => "", "error" => "Todos los menús ya fueron asignados previamente", "redirectionurl" => "");
+            die(json_encode($error_msg));
         }
 
-        echo json_encode($response);
     } else {
         $error_msg = array("message" => "", "error" => "Debe seleccionar al menos 1 menú de la lista para continuar", "redirectionurl" => "");
         die(json_encode($error_msg));
