@@ -30,6 +30,7 @@ if (isset($_REQUEST["artify_instance"])) {
 }
 
 function registrar_funcionarios($data, $obj){
+    $data["usuario"]["avatar"] = basename($data["usuario"]["avatar"]);
     $data["usuario"]["password"] = password_hash($data["usuario"]["password"], PASSWORD_DEFAULT);
     return $data;
 }
