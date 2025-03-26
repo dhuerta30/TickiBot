@@ -30,7 +30,13 @@ if (isset($_REQUEST["artify_instance"])) {
 }
 
 function registrar_funcionarios($data, $obj){
-    $data["usuario"]["avatar"] = basename($data["usuario"]["avatar"]);
+    $avatar = $data["usuario"]["avatar"];
+    if (empty($avatar)) {
+        $image = ArtifyABSPATH . 'uploads/1710162578_user.png';
+        $data["usuario"]["avatar"] =  basename($image);
+    } else {
+        $data["usuario"]["avatar"] = basename($avatar);
+    }
     $data["usuario"]["password"] = password_hash($data["usuario"]["password"], PASSWORD_DEFAULT);
     return $data;
 }
