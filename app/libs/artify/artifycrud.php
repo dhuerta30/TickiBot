@@ -2446,8 +2446,8 @@ function resetloginCallback($data, $obj)
         $queryfy->where("id", $hash[0]["id"]);
         $queryfy->update("usuario", array("password" => $encrypt));
 
-        $emailBody = "Correo enviado tu usuario es: $usuario y tu nueva contraseña es: $pass";
-        $subject = "Nueva Contraseña de acceso al sistema de Procedimentos";
+        $emailBody = "tu usuario es: $usuario y tu nueva contraseña es: $pass";
+        $subject = "Usuario y Nueva Contraseña de acceso a Tickibot Soporte con IA en tiempo Real";
         $to = $email;
 
         //$queryfy->send_email_public($to, 'daniel.telematico@gmail.com', null, $subject, $emailBody);
