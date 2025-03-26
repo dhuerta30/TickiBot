@@ -2672,7 +2672,7 @@ class HomeController
 		$artify->setSettings("function_filter_and_search", true);
 		$artify->colRename("user_message", "Mensajes del usuario");
 		$artify->colRename("bot_response", "Respuesta del Bot");
-		$artify->colRename("images", "Imagen");
+		$artify->colRename("images", "Contenido");
 		$artify->fieldRenameLable("user_message", "Mensajes del usuario");
 		$artify->fieldRenameLable("bot_response", "Respuesta del Bot");
 		$artify->fieldTypes("images", "FILE_NEW");
@@ -2689,7 +2689,7 @@ class HomeController
 		$queryfy = $artify->getQueryfyObj();
 		$queryfy->where("usuario", $usuario);
 		$queryfy->delete("historial_chat");
-		
+
 		echo json_encode(["mensaje" => "Historial Eliminado con éxito"]);
 	}
 }
