@@ -38,6 +38,9 @@
 
                         <div class="chat-container">
                             <div class="chat-header">Tickibot - Soporte en tiempo real con IA</div>
+
+                            <input type="text" id="search-messages" class="form-control mt-2 mb-2" placeholder="Buscar mensajes...">
+
                             <div id="chatbox">
                                 <?php 
                                     $usuario = $_SESSION['usuario'][0]["usuario"];
@@ -87,6 +90,23 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="<?=$_ENV["BASE_URL"]?>js/sweetalert2.all.min.js"></script>
 <script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("search-messages").addEventListener("keyup", function() {
+            let query = this.value.toLowerCase();
+            let messages = document.querySelectorAll("#chatbox .message");
+
+            messages.forEach(msg => {
+                let text = msg.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    msg.style.setProperty("display", "block", "important");
+                } else {
+                    msg.style.setProperty("display", "none", "important");
+                }
+            });
+        });
+    });
+
     $(document).on("artify_after_ajax_action", function(event, obj, data){
         var dataAction = obj.getAttribute('data-action');
         var dataId = obj.getAttribute('data-id');
@@ -358,22 +378,5 @@ $(document).on("click", ".clear_chat", function(){
         }
     });
 });
-
-// Verifica si el navegador soporta la API
-window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-const recognition = new SpeechRecognition();
-recognition.lang = "es-ES";
-recognition.continuous = true;
-recognition.interimResults = true;
-
-recognition.onresult = (event) => {
-    let text = event.results[0][0].transcript;
-    console.log("Texto reconocido:", text);
-};
-
-document.getElementById("start").addEventListener("click", () => recognition.start());
-document.getElementById("stop").addEventListener("click", () => recognition.stop());
-
 </script>
 <?php require "layouts/footer.php"; ?>
