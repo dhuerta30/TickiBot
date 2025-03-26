@@ -2681,4 +2681,18 @@ class HomeController
 			'render' => $render
 		]);
 	}
+
+	public function eliminar_historial(Request $request){
+		$usuario = $request->get('param1');
+
+		$artify = DB::ArtifyCrud();
+		$queryfy = $artify->getQueryfyObj();
+		$queryfy->where("usuario", $usuario);
+		$data = $queryfy->select("historial_chat");
+		if($data){
+			echo json_encode(["mensaje" => "Historial Eliminado con éxito"]);
+		} else {
+			echo json_encode(["error" => "Hubo un error al Eliminar el Historial"]);
+		}
+	}
 }

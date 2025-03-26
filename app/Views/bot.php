@@ -329,12 +329,31 @@ $(document).on("click", ".clear_chat", function(){
         showCancelButton: true
     }).then((result) => {
         if (result.isConfirmed) {
-            $(".user").remove();
-            $(".bot").remove();
-            Swal.fire({
-                icon: "success",
-                text: "Se ha Limpiado el Historial!",
-                confirmButtonText: "Aceptar"
+
+            fetch("<?=$_ENV["BASE_URL"]?>eliminar_historial", {
+                method: "POST",
+                body: JSON.stringify({ usuario: usuario }),
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => response.json())
+            .then(data => {
+                $(".user").remove();
+                $(".bot").remove();
+                Swal.fire({
+                    icon: "success",
+                    text: "Se ha Limpiado el Historial!",
+                    confirmButtonText: "Aceptar"
+                });
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Hubo un problema al enviar los datos. Inténtalo de nuevo.",
+                    confirmButtonColor: "#dc3545",
+                    confirmButtonText: "Aceptar"
+                });
+                console.error("Error:", error);
             });
         }
     });
