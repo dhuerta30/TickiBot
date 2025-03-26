@@ -15,7 +15,6 @@ $router->get('/', 'LoginController@index');
 $router->get('/login', 'LoginController@index');
 $router->get('/salir', 'LoginController@salir');
 $router->get('/recuperar', 'LoginController@reset');
-
 $router->get('/registrar', 'RegistroController@registrar');
 
 $router->get('/modulos', 'HomeController@modulos');

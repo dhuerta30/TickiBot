@@ -87,6 +87,31 @@ class LoginController {
     public function reset()
 	{
 		$artify = DB::ArtifyCrud();
+		$html_template = '
+		<div class="container mt-5">
+			<div class="row d-flex justify-content-center">
+				<div class="col-md-6">
+					<div class="card px-5 py-5 bg-light shadow-lg" id="form1">
+						<p class="mb-3 mt-3 text-center font-weight-bold">Recuperar Contraseña Funcionarios</p>
+						<center><img class="w-25" src="'.$_ENV["BASE_URL"].'theme/img/boot.png"></center>
+						<p class="mb-3 mt-3 text-center font-weight-bold">Tickibot Soporte con IA en tiempo Real</p>
+						<div class="form-data" v-if="!submitted">
+							<div class="form-group">
+								<label>Correo</label>
+								{email}
+								<p class="ertify_help_block help-block form-text with-errors"></p>
+							</div>
+							<div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-primary w-100">Recuperar</button> </div>
+							<a class="btn btn-info btn-block" href="'.$_ENV["BASE_URL"].'login">Acceder</a>
+							<a class="btn btn-info btn-block" href="'.$_ENV["BASE_URL"].'registrar">Registrarse</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>';
+		$artify->set_template($html_template);
+		$artify->buttonHide("submitBtn");
+		$artify->buttonHide("cancel");
 		$artify->fieldRenameLable("email", "Correo");
 		$artify->fieldAddOnInfo("email", "before", '<div class="input-group-append"><span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope-o"></i></span></div>');
 		$artify->addCallback("before_select", "resetloginCallback");
