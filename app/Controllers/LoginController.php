@@ -64,7 +64,7 @@ class LoginController {
 								{password}
 								<p class="ertify_help_block help-block form-text with-errors"></p>
 							</div>
-							<div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-primary w-100">Acceder</button> </div>
+							<div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-primary w-100 botones d-none">Acceder</button> </div>
 							<a class="btn btn-info btn-block" href="'.$_ENV["BASE_URL"].'registrar">Registrarse</a>
 							<a class="btn btn-info btn-block" href="'.$_ENV["BASE_URL"].'recuperar">Recuperar Clave</a>
 						</div>
