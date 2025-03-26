@@ -41,6 +41,11 @@ class RegistroController {
 								{usuario}
 								<p class="ertify_help_block help-block form-text with-errors"></p>
 							</div>
+							<div class="form-group">
+								<label>Rut</label>
+								{rut}
+								<p class="ertify_help_block help-block form-text with-errors"></p>
+							</div>
                             <div class="form-group">
 								<label>Contraseña</label>
 								{password}
