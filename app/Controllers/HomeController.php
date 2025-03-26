@@ -2642,7 +2642,7 @@ class HomeController
 		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 
 		$response = curl_exec($ch);
-		$botResponse = "Lo siento, no puedo responder en este momento.";
+		$botResponse = "Lo siento, no puedo responder en este momento, inténtelo mas tarde.";
 
 		if (curl_errno($ch)) {
 			error_log("cURL Error: " . curl_error($ch)); // Guarda el error en logs
