@@ -34,6 +34,124 @@ function registrar_funcionarios($data, $obj){
     return $data;
 }
 
+
+function despues_de_insertar_funcionarios($data, $obj){
+    $userId = $data;
+
+    $selectedMenus = [
+        ["checked" => false, "menuId" => 4],
+        ["checked" => true, "menuId" => 5],
+        ["checked" => true, "menuId" => 6],
+        ["checked" => true, "menuId" => 7],
+        ["checked" => false, "menuId" => 10],
+        ["checked" => false, "menuId" => 12],
+        ["checked" => false, "menuId" => 19],
+        ["checked" => false, "menuId" => 141],
+        ["checked" => false, "menuId" => 284],
+        ["checked" => true, "menuId" => 286],
+        ["checked" => false, "menuId" => 287],
+    ];
+
+    if (is_array($selectedMenus)) {
+        $queryfy = $obj->getQueryfyObj();
+
+        $menuMarcado = false;
+        $menuDesmarcado = false;
+
+        foreach ($selectedMenus as $menu) {
+            $menuId = $menu["menuId"];
+            $submenuIds = isset($menu["submenuIds"]) ? $menu["submenuIds"] : [];
+            $checked = $menu["checked"];
+
+            // Procesar el menú principal
+            $existMenu = $queryfy->where('id_menu', $menuId)
+                ->where('id_usuario', $userId)
+                ->select('usuario_menu');
+
+            switch ($checked) {
+                case "true":
+                    if (!$existMenu) {
+                        $queryfy->insert('usuario_menu', array(
+                            "id_usuario" => $userId,
+                            "id_menu" => $menuId,
+                            "visibilidad_menu" => "Mostrar"
+                        ));
+                        $menuMarcado = true;
+                    } else {
+                        $queryfy->where('id_usuario', $userId)
+                            ->where('id_menu', $menuId)
+                            ->update('usuario_menu', array("visibilidad_menu" => "Mostrar"));
+                        $menuMarcado = true;
+                    }
+                    break;
+
+                case "false":
+                    $queryfy->where('id_usuario', $userId)
+                        ->where('id_menu', $menuId)
+                        ->update('usuario_menu', array("visibilidad_menu" => "Ocultar"));
+                    $menuDesmarcado = true;
+                    break;
+            }
+
+            // Procesar los submenús asociados al menú principal
+            foreach ($submenuIds as $submenuId) {
+                $id_submenu = $submenuId['id'];
+                $checked = $submenuId["checked"];
+
+                $existSubmenu = $queryfy->where('id_submenu', $id_submenu)
+                    ->where('id_usuario', $userId)
+                    ->select('usuario_submenu');
+
+                switch ($checked) {
+                    case "true":
+                        if (!$existSubmenu) {
+                            $queryfy->insert('usuario_submenu', array(
+                                "id_usuario" => $userId,
+                                "id_submenu" => $id_submenu,
+                                "id_menu" => $menuId,
+                                "visibilidad_submenu" => "Mostrar"
+                            ));
+                        } else {
+                            $queryfy->where('id_usuario', $userId)
+                                ->where('id_submenu', $id_submenu)
+                                ->where('id_menu', $menuId)
+                                ->update('usuario_submenu', array("visibilidad_submenu" => "Mostrar"));
+                        }
+                        break;
+
+                    case "false":
+                        $queryfy->where('id_usuario', $userId)
+                            ->where('id_submenu', $id_submenu)
+                            ->where('id_menu', $menuId)
+                            ->update('usuario_submenu', array("visibilidad_submenu" => "Ocultar"));
+                        break;
+                }
+            }
+        }
+
+        $response = [];
+
+        if ($menuMarcado) {
+            $response['success'][] = 'Menús asignados correctamente';
+        }
+
+        if ($menuDesmarcado) {
+            $response['success'][] = 'Menús Actualizados correctamente';
+        }
+
+        if (!$menuMarcado && !$menuDesmarcado) {
+            $response['error'][] = 'Todos los menús ya fueron asignados previamente';
+        }
+
+        echo json_encode($response);
+    } else {
+        echo json_encode(['error' => 'Debe seleccionar al menos 1 menú de la lista para continuar']);
+    }
+
+    return $data;
+}
+
+
 function buscador_tabla($data, $obj, $columnDB = array()) {
     $queryfy = $obj->getQueryfyObj();
     $tabla = $obj->getLangData("tabla");

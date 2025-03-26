@@ -86,6 +86,7 @@ class RegistroController {
         $artify->formFieldValue("idrol", "2");
         $artify->formFieldValue("estatus", "1");
         $artify->addCallback("before_insert", "registrar_funcionarios");
+		$artify->addCallback("after_insert", "despues_de_insertar_funcionarios");
         $render = $artify->dbTable("usuario")->render("insertform");
 		$mask = $artify->loadPluginJsCode("bootstrap-inputmask",".rut", array(
             "mask"=> "'9{1,2}.9{3}.9{3}-(9|k|K)'",
