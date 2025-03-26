@@ -35,7 +35,6 @@ function registrar_funcionarios($data, $obj){
     return $data;
 }
 
-
 function despues_de_insertar_funcionarios($data, $obj){
     $userId = $data;
 
