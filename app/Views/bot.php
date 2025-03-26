@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="chat-container">
-                            <div class="chat-header">Tickibot - Soporte en tiempo real </div>
+                            <div class="chat-header">Tickibot - Soporte en tiempo real con IA</div>
                             <div id="chatbox">
                                 <?php 
                                     $usuario = $_SESSION['usuario'][0]["usuario"];
@@ -67,10 +67,8 @@
                                 <button class="btn btn-info" title="Auto sugerencias" data-toggle="modal" data-target="#sugerencias"><i class="fab fa-facebook-messenger"></i></button>
                                 <button class="btn btn-danger clear_chat" title="Limpiar todo el Historial"><i class="fa fa-trash"></i></button>
 
-                                <button class="btn btn-secondary" id="start"><i class="fa fa-play"></i></button>
-                                <button class="btn btn-warning" id="stop"><i class="fa fa-stop"></i></button>
-                                <textarea id="text" rows="6" cols="50" placeholder="Aquí se mostrará el texto..."></textarea>
-                                <br>
+                                <!--<button class="btn btn-secondary" id="start"><i class="fa fa-play"></i></button>
+                                <button class="btn btn-warning" id="stop"><i class="fa fa-stop"></i></button>-->
 
                                 <input type="text" id="userInput" class="form-control" placeholder="Escribe tu mensaje y presiona enter...">
                                 <button class="btn btn-primary" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
@@ -88,7 +86,6 @@
 <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="<?=$_ENV["BASE_URL"]?>js/sweetalert2.all.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
 <script>
     $(document).on("artify_after_ajax_action", function(event, obj, data){
         var dataAction = obj.getAttribute('data-action');
@@ -343,33 +340,21 @@ $(document).on("click", ".clear_chat", function(){
     });
 });
 
-if (annyang) {
-    annyang.setLanguage("es-ES");
+// Verifica si el navegador soporta la API
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    let texto = document.getElementById("text");
+const recognition = new SpeechRecognition();
+recognition.lang = "es-ES";
+recognition.continuous = true;
+recognition.interimResults = true;
 
-    let commands = {
-        "*speech": (speech) => {
-            texto.value += speech + " ";
-        }
-    };
+recognition.onresult = (event) => {
+    let text = event.results[0][0].transcript;
+    console.log("Texto reconocido:", text);
+};
 
-    annyang.addCommands(commands);
-
-    // Botón para iniciar el reconocimiento de voz
-    document.getElementById("start").addEventListener("click", () => {
-        annyang.start();
-        console.log("Reconocimiento de voz iniciado...");
-    });
-
-    // Botón para detener el reconocimiento de voz
-    document.getElementById("stop").addEventListener("click", () => {
-        annyang.abort();
-        console.log("Reconocimiento de voz detenido.");
-    });
-} else {
-    alert("Tu navegador no soporta reconocimiento de voz.");
-}
+document.getElementById("start").addEventListener("click", () => recognition.start());
+document.getElementById("stop").addEventListener("click", () => recognition.stop());
 
 </script>
 <?php require "layouts/footer.php"; ?>

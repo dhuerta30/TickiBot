@@ -29,6 +29,11 @@ if (isset($_REQUEST["artify_instance"])) {
     $fomplusajax->handleRequest();
 }
 
+function registrar_funcionarios($data, $obj){
+    $data["usuario"]["password"] = password_hash($data["usuario"]["password"], PASSWORD_DEFAULT);
+    return $data;
+}
+
 function buscador_tabla($data, $obj, $columnDB = array()) {
     $queryfy = $obj->getQueryfyObj();
     $tabla = $obj->getLangData("tabla");
