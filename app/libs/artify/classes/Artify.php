@@ -7058,6 +7058,7 @@ Class Artify {
         require_once(dirname(__FILE__) . "/library/mailer/src/SMTP.php");
        
         $mail = new PHPMailer(true);
+        $mail->CharSet = "UTF-8";
         $mail->Subject = $subject;
         $mail->msgHTML($message);
         $mail->AltBody = $message;
