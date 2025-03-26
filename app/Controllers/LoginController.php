@@ -49,12 +49,12 @@ class LoginController {
 										<option value="usuario_clave">Con Usuario y Contraseña</option>
 									</select>
 								</div>	
-							<div class="form-group">
+							<div class="form-group usuario_col d-none">
 								<label>Usuario</label>
 								{usuario}
 								<p class="ertify_help_block help-block form-text with-errors"></p>
 							</div>
-							<div class="form-group">
+							<div class="form-group rut_col d-none">
 								<label>Rut</label>
 								{rut}
 								<p class="ertify_help_block help-block form-text with-errors"></p>
