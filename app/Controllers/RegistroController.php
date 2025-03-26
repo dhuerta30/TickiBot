@@ -70,9 +70,11 @@ class RegistroController {
 			</div>
 		</div>';
 		$artify->set_template($html_template);
+		$artify->addPlugin("bootstrap-inputmask");
+		$artify->fieldCssClass("rut", array("rut"));
         $artify->fieldTypes("avatar", "FILE_NEW");
         $artify->fieldTypes("password", "password");
-        $artify->editFormFields(array("nombre", "email", "usuario", "password", "idrol", "estatus", "avatar"));
+        $artify->editFormFields(array("nombre", "email", "usuario", "rut", "password", "idrol", "estatus", "avatar"));
         $artify->fieldNotMandatory("avatar");
         $artify->buttonHide("submitBtn");
 		$artify->buttonHide("cancel");
@@ -80,8 +82,17 @@ class RegistroController {
         $artify->formFieldValue("estatus", "1");
         $artify->addCallback("before_insert", "registrar_funcionarios");
         $render = $artify->dbTable("usuario")->render("insertform");
+		$mask = $artify->loadPluginJsCode("bootstrap-inputmask",".rut", array(
+            "mask"=> "'9{1,2}.9{3}.9{3}-(9|k|K)'",
+            "casing" => "'upper'",
+            "clearIncomplete" => "true",
+            "numericInput"=> "true", 
+            "positionCaretOnClick" => "'none'"
+        ));
+
         View::render('registrar_funcionarios', [
-            'render' => $render
+            'render' => $render,
+			'mask' => $mask
         ]);
     }
 }
