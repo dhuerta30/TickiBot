@@ -52,6 +52,7 @@ class LoginController {
 							</div>
 							<div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-primary w-100">Acceder</button> </div>
 							<a class="btn btn-info btn-block" href="'.$_ENV["BASE_URL"].'registrar">Registrarse</a>
+							<a class="btn btn-info btn-block" href="'.$_ENV["BASE_URL"].'recuperar">Recuperar Clave</a>
 						</div>
 					</div>
 				</div>
@@ -92,7 +93,7 @@ class LoginController {
 			<div class="row d-flex justify-content-center">
 				<div class="col-md-6">
 					<div class="card px-5 py-5 bg-light shadow-lg" id="form1">
-						<p class="mb-3 mt-3 text-center font-weight-bold">Recuperar Contraseña Funcionarios</p>
+						<p class="mb-3 mt-3 text-center font-weight-bold">Recuperar Clave Funcionarios</p>
 						<center><img class="w-25" src="'.$_ENV["BASE_URL"].'theme/img/boot.png"></center>
 						<p class="mb-3 mt-3 text-center font-weight-bold">Tickibot Soporte con IA en tiempo Real</p>
 						<div class="form-data" v-if="!submitted">
