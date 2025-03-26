@@ -52,7 +52,7 @@ class LoginController {
 								<p class="ertify_help_block help-block form-text with-errors"></p>
 							</div>
 							<div class="form-group">
-								<label>Contraseña</label> 
+								<label>Contraseña</label>
 								{password}
 								<p class="ertify_help_block help-block form-text with-errors"></p>
 							</div>
