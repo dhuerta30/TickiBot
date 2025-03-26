@@ -35,7 +35,7 @@ class LoginController {
 		$html_template = '
 		<div class="container mt-5">
 			<div class="row d-flex justify-content-center">
-				<div class="col-md-6">
+				<div class="col-xl-6">
 					<div class="card px-5 py-5 bg-light shadow-lg" id="form1">
 						<p class="mb-3 mt-3 text-center font-weight-bold">Acceso Funcionarios</p>
 						<center><img class="w-25" src="'.$_ENV["BASE_URL"].'theme/img/boot.png"></center>
@@ -115,7 +115,7 @@ class LoginController {
 		$html_template = '
 		<div class="container mt-5">
 			<div class="row d-flex justify-content-center">
-				<div class="col-md-6">
+				<div class="col-xl-6">
 					<div class="card px-5 py-5 bg-light shadow-lg" id="form1">
 						<p class="mb-3 mt-3 text-center font-weight-bold">Recuperar Clave Funcionarios</p>
 						<center><img class="w-25" src="'.$_ENV["BASE_URL"].'theme/img/boot.png"></center>
