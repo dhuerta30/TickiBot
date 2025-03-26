@@ -42,6 +42,14 @@ class LoginController {
 						<p class="mb-3 mt-3 text-center font-weight-bold">Tickibot Soporte con IA en tiempo Real</p>
 						<div class="form-data" v-if="!submitted">
 							<div class="form-group">
+									<label>¿Cómo desea ingresar al sistema?</label>
+									<select class="form-control seleccion_de_acceso">
+										<option value="">Seleccione una Opción</option>
+										<option value="rut_clave">Con Rut y Contraseña</option>
+										<option value="usuario_clave">Con Usuario y Contraseña</option>
+									</select>
+								</div>	
+							<div class="form-group">
 								<label>Usuario</label>
 								{usuario}
 								<p class="ertify_help_block help-block form-text with-errors"></p>
