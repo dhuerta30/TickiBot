@@ -2675,6 +2675,7 @@ class HomeController
 		$artify->colRename("bot_response", "Respuesta del Bot");
 		$artify->fieldRenameLable("user_message", "Mensajes del usuario");
 		$artify->fieldRenameLable("bot_response", "Respuesta del Bot");
+		$artify->fieldNotMandatory("contenido");
 		$render = $artify->dbTable("messages")->render();
 		View::render('chat', [
 			'render' => $render
