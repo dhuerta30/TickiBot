@@ -2688,11 +2688,8 @@ class HomeController
 		$artify = DB::ArtifyCrud();
 		$queryfy = $artify->getQueryfyObj();
 		$queryfy->where("usuario", $usuario);
-		$data = $queryfy->select("historial_chat");
-		if($data){
-			echo json_encode(["mensaje" => "Historial Eliminado con éxito"]);
-		} else {
-			echo json_encode(["error" => "Hubo un error al Eliminar el Historial"]);
-		}
+		$queryfy->delete("historial_chat");
+		
+		echo json_encode(["mensaje" => "Historial Eliminado con éxito"]);
 	}
 }

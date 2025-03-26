@@ -330,9 +330,8 @@ $(document).on("click", ".clear_chat", function(){
     }).then((result) => {
         if (result.isConfirmed) {
 
-            fetch("<?=$_ENV["BASE_URL"]?>eliminar_historial", {
-                method: "POST",
-                body: JSON.stringify({ usuario: usuario }),
+            fetch(`<?=$_ENV["BASE_URL"]?>eliminar_historial/<?=$_SESSION["usuario"][0]["usuario"]?>`, {
+                method: "GET",
                 headers: { "Content-Type": "application/json" }
             })
             .then(response => response.json())
@@ -355,6 +354,7 @@ $(document).on("click", ".clear_chat", function(){
                 });
                 console.error("Error:", error);
             });
+
         }
     });
 });
