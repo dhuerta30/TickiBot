@@ -2441,10 +2441,12 @@ function resetloginCallback($data, $obj)
         $pass = $queryfy->getRandomPassword(15, true);
         $encrypt = password_hash($pass, PASSWORD_DEFAULT);
 
+        $usuario = $hash[0]["usuario"];
+
         $queryfy->where("id", $hash[0]["id"]);
         $queryfy->update("usuario", array("password" => $encrypt));
 
-        $emailBody = "Correo enviado  tu nueva contraseña es: $pass";
+        $emailBody = "Correo enviado tu usuario es: $usuario y tu nueva contraseña es: $pass";
         $subject = "Nueva Contraseña de acceso al sistema de Procedimentos";
         $to = $email;
 
