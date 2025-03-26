@@ -234,6 +234,7 @@ $(document).on("click", ".usar", function(){
     if(frases != ""){
         document.getElementById("userInput").value = frases;
         $("#sugerencias").modal('hide');
+        sendMessage();
     } else {
         Swal.fire({
             icon: "warning",
