@@ -2296,25 +2296,33 @@ function editar_usuario($data, $obj){
 
 function beforeloginCallback($data, $obj) {
     $pass = $data['usuario']['password'];
-    $user = $data['usuario']['usuario'];
+    $user_or_rut = $data['usuario']['usuario'] ?? $data['usuario']['rut'] ?? null;
 
-    $queryfy = $obj->getQueryfyObj();
-    $queryfy->where("usuario", $user);
-    $hash = $queryfy->select("usuario");
+    if ($user_or_rut) {
+        $queryfy = $obj->getQueryfyObj();
+        $field = isset($data['usuario']['rut']) ? "rut" : "usuario";
+        $queryfy->where($field, $user_or_rut);
+        $hash = $queryfy->select("usuario");
 
-    if ($hash) {
-        if (password_verify($pass, $hash[0]['password'])) {
-            @session_start();
-            $_SESSION["data"] = $data;
-        
-            $obj->setLangData("no_data", "Bienvenido");
-            $obj->formRedirection($_ENV['BASE_URL']."modulos");
+       if ($hash) {
+            if (password_verify($pass, $hash[0]['password'])) {
+                @session_start();
+                $_SESSION["data"] = $data;
+                $obj->setLangData("no_data", "Bienvenido");
+            } else {
+                echo "El usuario o la contraseña ingresada no coinciden";
+                die();
+            }
         } else {
-            echo "El usuario o la contraseña ingresada no coinciden.";
+            if (isset($data['usuario']['rut'])) {
+                echo "El RUT ingresado no coincide";
+            } else {
+                echo "El usuario ingresado no existe";
+            }
             die();
         }
     } else {
-        echo "Datos erroneos.";
+        echo "Datos erróneos";
         die();
     }
 
