@@ -145,7 +145,8 @@ function despues_de_insertar_funcionarios($data, $obj){
 
         echo json_encode($response);
     } else {
-        echo json_encode(['error' => 'Debe seleccionar al menos 1 menú de la lista para continuar']);
+        $error_msg = array("message" => "", "error" => "Debe seleccionar al menos 1 menú de la lista para continuar", "redirectionurl" => "");
+        die(json_encode($error_msg));
     }
 
     return $data;
