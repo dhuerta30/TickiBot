@@ -38,7 +38,7 @@
 
         Swal.fire({
             title: "Genial!",
-            text: "Bienvenido",
+            text: "Ya puede Iniciar Sesión",
             icon: "success",
             confirmButtonText: "Aceptar",
             allowOutsideClick: false
