@@ -2450,7 +2450,6 @@ function resetloginCallback($data, $obj)
         $subject = "Usuario y Nueva Contraseña de acceso a Tickibot Soporte con IA en tiempo Real";
         $to = $email;
 
-        //$queryfy->send_email_public($to, 'daniel.telematico@gmail.com', null, $subject, $emailBody);
         App\core\DB::PHPMail($to, "daniel.telematico@gmail.com", $subject, $emailBody);
         $obj->setLangData("success", "Correo enviado con éxito");
     }
