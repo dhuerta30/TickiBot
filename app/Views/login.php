@@ -22,6 +22,7 @@
     <div class="row mt-5">
         <div class="col-md-10 m-auto">
             <?= $login; ?>
+            <?= $mask; ?>
         </div>
     </div>
 </div>

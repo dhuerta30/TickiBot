@@ -31,6 +31,7 @@ class LoginController {
 
     public function index(){
         $artify = DB::ArtifyCrud();
+		$artify->addPlugin("bootstrap-inputmask");
 		$html_template = '
 		<div class="container mt-5">
 			<div class="row d-flex justify-content-center">
@@ -43,6 +44,11 @@ class LoginController {
 							<div class="form-group">
 								<label>Usuario</label>
 								{usuario}
+								<p class="ertify_help_block help-block form-text with-errors"></p>
+							</div>
+							<div class="form-group">
+								<label>Rut</label>
+								{rut}
 								<p class="ertify_help_block help-block form-text with-errors"></p>
 							</div>
 							<div class="form-group">
@@ -59,14 +65,22 @@ class LoginController {
 			</div>
 		</div>';
 		$artify->set_template($html_template);
+		$artify->fieldCssClass("rut", array("rut"));
 		$artify->buttonHide("submitBtn");
 		$artify->buttonHide("cancel");
 		$artify->fieldTypes("password", "password");
 		$artify->addCallback("before_select", "beforeloginCallback");
 		$artify->setLangData("login", "Ingresar");
 		$login = $artify->dbTable("usuario")->render("selectform");
+		$mask = $artify->loadPluginJsCode("bootstrap-inputmask",".rut", array(
+            "mask"=> "'9{1,2}.9{3}.9{3}-(9|k|K)'",
+            "casing" => "'upper'",
+            "clearIncomplete" => "true",
+            "numericInput"=> "true", 
+            "positionCaretOnClick" => "'none'"
+        ));
 
-        View::render('login', ['login' => $login]);
+        View::render('login', ['login' => $login, 'mask' => $mask]);
     }
 
 	public function users()
