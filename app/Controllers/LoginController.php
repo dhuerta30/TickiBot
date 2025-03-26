@@ -76,6 +76,8 @@ class LoginController {
 		$artify->fieldCssClass("rut", array("rut"));
 		$artify->buttonHide("submitBtn");
 		$artify->buttonHide("cancel");
+		$artify->fieldCssClass("rut", array("rut"));
+		$artify->fieldCssClass("usuario", array("usuario"));
 		$artify->fieldTypes("password", "password");
 		$artify->addCallback("before_select", "beforeloginCallback");
 		$artify->setLangData("login", "Ingresar");
