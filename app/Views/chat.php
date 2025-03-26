@@ -2,6 +2,12 @@
 <?php require "layouts/header.php"; ?>
 <?php require "layouts/sidebar.php"; ?>
 <link href="<?=$_ENV["BASE_URL"]?>css/sweetalert2.min.css" rel="stylesheet">
+<style>
+    body #cke_notifications_area_editor1,
+    body .cke_notifications_area {
+        display: none !important;
+    }
+</style>
 <div class="content-wrapper">
     <section class="content">
         <div class="card mt-4">
@@ -22,6 +28,7 @@
 </div>
 <?php require "layouts/footer.php"; ?>
 <script src="<?=$_ENV["BASE_URL"]?>js/sweetalert2.all.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 <script>
     $(document).on("artify_after_ajax_action", function(event, obj, data){
         var dataAction = obj.getAttribute('data-action');
@@ -50,5 +57,41 @@
                 }
             });
         }
+    });
+
+    $(document).on("artify_on_load artify_after_submission artify_after_ajax_action", function (event, obj, data) {
+        CKEDITOR.replace("bWVzc2FnZXMjJGNvbnRlbmlkb0AzZHNmc2RmKio5OTM0MzI0", {
+            height: 300,
+            toolbar: [
+            { name: "document", items: ["Source"] },
+            { name: "clipboard", items: ["Cut", "Copy", "Paste", "Undo", "Redo"] },
+            { name: "editing", items: ["Find", "Replace", "SelectAll"] },
+            {
+                name: "basicstyles",
+                items: ["Bold", "Italic", "Underline", "Strike", "RemoveFormat"]
+            },
+            {
+                name: "paragraph",
+                items: [
+                    "NumberedList",
+                    "BulletedList",
+                    "-",
+                    "Outdent",
+                    "Indent",
+                    "-",
+                    "Blockquote",
+                    "JustifyLeft",
+                    "JustifyCenter",
+                    "JustifyRight",
+                    "JustifyBlock"
+                ]
+            },
+            {
+                name: "insert",
+                items: ["Image", "Table", "HorizontalRule", "SpecialChar"]
+            },
+            { name: "tools", items: ["Maximize", "ShowBlocks"] }
+            ]
+        });
     });
 </script>

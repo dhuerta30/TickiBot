@@ -2660,6 +2660,7 @@ class HomeController
 	public function historico_chat(){
 		$artify = DB::ArtifyCrud();
 		$artify->tableHeading("Lista de Mensajes");
+		$artify->setSettings("encryption", true);
 		$artify->setSettings("searchbox", true);
 		$artify->setSettings("printBtn", false);
 		$artify->setSettings("pdfBtn", false);
@@ -2672,10 +2673,8 @@ class HomeController
 		$artify->setSettings("function_filter_and_search", true);
 		$artify->colRename("user_message", "Mensajes del usuario");
 		$artify->colRename("bot_response", "Respuesta del Bot");
-		$artify->colRename("images", "Contenido");
 		$artify->fieldRenameLable("user_message", "Mensajes del usuario");
 		$artify->fieldRenameLable("bot_response", "Respuesta del Bot");
-		$artify->fieldTypes("images", "FILE_NEW");
 		$render = $artify->dbTable("messages")->render();
 		View::render('chat', [
 			'render' => $render
