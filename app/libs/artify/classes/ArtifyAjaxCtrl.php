@@ -3,15 +3,25 @@
 Class ArtifyAjaxCtrl {
 
     public function handleRequest() {
-        $instanceKey = isset($_REQUEST["artify_instance"]) ? filter_var($_REQUEST["artify_instance"], FILTER_SANITIZE_STRING) : null;
+
+        if (!isset($_REQUEST["artify_instance"])) {
+            die("Acceso denegado.");
+        }
+
+        $instanceKey = filter_var($_REQUEST["artify_instance"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         
         if(!isset($_SESSION["artify_sess"][$instanceKey])){
             die("La sesión ha caducado. Actualice su página para continuar.");
         }
 
-        $artify = @unserialize($_SESSION["artify_sess"][$instanceKey]);
+        $artifySerialized = $_SESSION["artify_sess"][$instanceKey] ?? null;
+        if (empty($artifySerialized)) {
+            die("Ocurrió un error. Inténtelo de nuevo.");
+        }
+
+        $artify = @unserialize($artifySerialized);
         if ($artify === false) {
-            die("Ocurrió un error. Por favor, inténtelo de nuevo más tarde.");
+            die("Error al procesar la solicitud.");
         }
 
         $action = isset($_POST["artify_data"]["action"]) ? filter_var($_POST["artify_data"]["action"], FILTER_SANITIZE_STRING) : null;
