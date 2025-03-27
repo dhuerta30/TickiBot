@@ -254,10 +254,10 @@ function enviarDatosFuncionario(){
 }
 
 function enviarDatos() {
-    let rut = document.getElementById("rut").value.trim();
-    let pass = document.getElementById("pass").value.trim();
+    let titulo = document.querySelector(".titulo").value.trim();
+    let contenido = document.querySelector(".contenido").value.trim();
 
-    if (rut === "" || pass === "") {
+    if (titulo === "" || contenido === "") {
         Swal.fire({
             icon: "warning",
             title: "Campos vacíos",
@@ -270,7 +270,7 @@ function enviarDatos() {
 
     fetch("<?=$_ENV["BASE_URL"]?>mesajes", {
         method: "POST",
-        body: JSON.stringify({ rut: rut, pass: pass }),
+        body: JSON.stringify({ titulo: titulo, contenido: contenido }),
         headers: { "Content-Type": "application/json" }
     })
     .then(response => response.json())
