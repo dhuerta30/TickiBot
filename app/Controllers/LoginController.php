@@ -131,6 +131,7 @@ class LoginController {
 							<div class="form-group">
 								<label>Correo</label>
 								{email}
+								<p class="mt-2 font-weight-bold text-center">Ingresa tu correo para recuperar tu clave</p>
 								<p class="ertify_help_block help-block form-text with-errors"></p>
 							</div>
 							<div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-primary w-100">Recuperar</button> </div>
