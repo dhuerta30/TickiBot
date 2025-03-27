@@ -36,15 +36,17 @@ class RegistroController {
 								{email}
 								<p class="ertify_help_block help-block form-text with-errors"></p>
 							</div>
-                            <div class="form-group">
-								<label>Usuario</label>
-								{usuario}
-								<p class="ertify_help_block help-block form-text with-errors"></p>
-							</div>
-							<div class="form-group">
-								<label>Rut</label>
-								{rut}
-								<p class="ertify_help_block help-block form-text with-errors"></p>
+                            <div class="row">
+								<div class="form-group col-md-6">
+									<label>Usuario</label>
+									{usuario}
+									<p class="ertify_help_block help-block form-text with-errors"></p>
+								</div>
+								<div class="form-group col-md-6">
+									<label>Rut</label>
+									{rut}
+									<p class="ertify_help_block help-block form-text with-errors"></p>
+								</div>
 							</div>
                             <div class="form-group">
 								<label>Contraseña</label>
