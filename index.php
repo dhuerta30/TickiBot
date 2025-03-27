@@ -18,7 +18,6 @@ $router->get('/recuperar', 'LoginController@reset');
 $router->get('/registrar', 'RegistroController@registrar');
 
 $router->get('/modulos', 'HomeController@modulos');
-$router->post('/enviar_tickets', 'HomeController@enviar_tickets');
 $router->get('/tickets', 'HomeController@tickets');
 $router->get('/eliminar_historial/{usuario}', 'HomeController@eliminar_historial');
 $router->get('/bot', 'HomeController@bot');
@@ -28,6 +27,7 @@ $router->get('/perfil', 'HomeController@perfil');
 $router->get('/respaldos', 'HomeController@respaldos');
 $router->get('/menu', 'HomeController@menu');
 $router->get('/acceso_menus', 'HomeController@acceso_menus');
+
 $router->post('/generarToken', 'HomeController@generarToken');
 $router->post('/obtener_campos_relacion_union_interna', 'HomeController@obtener_campos_relacion_union_interna');
 $router->post('/obtener_id_tabla', 'HomeController@obtener_id_tabla');
@@ -46,12 +46,11 @@ $router->post('/obtener_campos_union_izquierda', 'HomeController@obtener_campos_
 $router->post('/cargar_imagenes_configuracion', 'HomeController@cargar_imagenes_configuracion');
 $router->post('/cargar_vista_submenu', 'HomeController@cargar_vista_submenu');
 $router->post('/mensajes', 'HomeController@mensajes');
+$router->post('/enviar_tickets', 'HomeController@enviar_tickets');
 
 $router->get('/Configuracion', 'ConfiguracionController@index');
-
 $router->get('/documentacion', 'DocumentacionController@documentacion');
 $router->get('/error', 'ErrorController@index');
-
 $router->get('/hola', 'UserController@index');
 $router->get('usuario/{id}/{val}/{val}', 'UserController@show');
 

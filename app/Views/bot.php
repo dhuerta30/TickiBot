@@ -275,7 +275,6 @@ function enviarDatos() {
     });
 }
 
-
 let inactivityTimeout;
 
 // Función para mostrar mensaje de inactividad

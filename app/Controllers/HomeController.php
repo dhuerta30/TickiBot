@@ -2724,9 +2724,9 @@ class HomeController
 			$artify = DB::ArtifyCrud();
 			$queryfy = $artify->getQueryfyObj();
 			$queryfy->insert("tickets", array(
-				"funcionario" => $funcionario, 
+				"funcionario" => $funcionario,
 				"titulo" => $titulo, 
-				"contenido" => $contenido, 
+				"contenido" => $contenido,
 				"estado" => "Ingresado"
 			));
 			echo json_encode(["mensaje" => "Ticket creado con éxito"]);
