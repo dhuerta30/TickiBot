@@ -217,8 +217,6 @@ class HomeController
 		if ($request->getMethod() === 'POST') {
 			$userId = $request->post("userId");
 			$selectedMenus = $request->post("selectedMenus");
-			print_r($selectedMenus);
-			die();
 
 			if (is_array($selectedMenus)) {
 				$artify = DB::ArtifyCrud();
@@ -2596,7 +2594,7 @@ class HomeController
 				"usuario" => $usuario
 			));
 
-			echo json_encode(["response" => $botResponse]);
+			echo json_encode(["response" => $botResponse, "user_message" => $result[0]["user_message"]]);
 		}
 	}
 
@@ -2692,5 +2690,21 @@ class HomeController
 		$queryfy->delete("historial_chat");
 
 		echo json_encode(["mensaje" => "Historial Eliminado con éxito"]);
+	}
+
+	public function tickets(){
+		$artify = DB::ArtifyCrud();
+		$artify->fieldTypes("estado", "select");
+		$artify->fieldDataBinding("estado", array("Ingresado"=> "Ingresado", "Anulado" => "Anulado", "Finalizado"=> "Finalizado"), "", "","array");
+		$artify->colRename("id_tickets", "ID");
+		$artify->setSettings("totalRecordsInfo", true);
+		$artify->setSettings("searchbox", true);
+		$artify->setSettings("editbtn", true);
+		$artify->setSettings("delbtn", true);
+		$artify->buttonHide("submitBtnSaveBack");
+		$render = $artify->dbTable("tickets")->render();
+		View::render("tickets", [
+			"render" => $render
+		]);
 	}
 }

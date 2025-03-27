@@ -16,65 +16,66 @@
                 <div class="row">
                     <div class="col-md-12">
                        
-                    <div class="modal fade" id="sugerencias" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">Selecciona una sugerencia</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                
-                                <label>Sugerencias para preguntar al Bot</label>
-                               <?=$render?>
-                               <?=$chosen?>
-                               <a href="javascript:;" class="btn btn-primary usar">Usar</a>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
+                        
 
-                        <div class="chat-container">
-                            <div class="chat-header">Tickibot - Soporte en tiempo real con IA</div>
+                        <div class="row">
 
-                            <input type="text" id="search-messages" class="form-control mt-2 mb-2" placeholder="Buscar mensajes...">
+                            <div class="col-md-8">
+                                <div class="chat-container">
+                                    <div class="chat-header">Tickibot - Soporte en tiempo real con IA</div>
 
-                            <div id="chatbox">
-                                <?php 
-                                    $usuario = $_SESSION['usuario'][0]["usuario"];
-                                    $historial_chat = App\Controllers\HomeController::historial_chat($usuario);
-                                ?>
+                                    <input type="text" id="search-messages" class="form-control mt-2 mb-2" placeholder="Buscar mensajes...">
 
-                                <?php if($historial_chat): ?>
-                                    
-                                    <?php foreach($historial_chat as $chat): ?>
-                                    <div class="message user w-100 d-flex align-items-center">
-                                        <div class="mr-2">
-                                            <img src="<?=$_ENV["BASE_URL"]?>app/libs/artify/uploads/<?=$_SESSION["usuario"][0]["avatar"]?>" alt="<?=$usuario?>" style="width: 50px; height: 50px; border-radius: 50%;">
-                                        </div>
-                                        <div><?=$chat["mensaje_usuario"]?></div>
+                                    <div id="chatbox">
+                                        <?php 
+                                            $usuario = $_SESSION['usuario'][0]["usuario"];
+                                            $historial_chat = App\Controllers\HomeController::historial_chat($usuario);
+                                        ?>
+
+                                        <?php if($historial_chat): ?>
+                                            
+                                            <?php foreach($historial_chat as $chat): ?>
+                                            <div class="message user w-100 d-flex align-items-center">
+                                                <div class="mr-2">
+                                                    <img src="<?=$_ENV["BASE_URL"]?>app/libs/artify/uploads/<?=$_SESSION["usuario"][0]["avatar"]?>" alt="<?=$usuario?>" style="width: 50px; height: 50px; border-radius: 50%;">
+                                                </div>
+                                                <div><?=$chat["mensaje_usuario"]?></div>
+                                            </div>
+
+                                            <div class="message bot d-block w-100">
+                                                <img src="<?=$_ENV["BASE_URL"]?>theme/img/boot.png" alt="Bot" style="width: 50px; height: 50px; border-radius: 50%;">
+                                                <?=$chat["respuesta_bot"]?>
+                                            </div>
+                                            <?php endforeach; ?>
+                                        
+                                        <?php endif; ?>
+
                                     </div>
+                                    <div class="chat-footer">
+                                        <button class="btn btn-danger clear_chat" title="Limpiar todo el Historial"><i class="fa fa-trash"></i></button>
 
-                                    <div class="message bot d-block w-100">
-                                        <img src="<?=$_ENV["BASE_URL"]?>theme/img/boot.png" alt="Bot" style="width: 50px; height: 50px; border-radius: 50%;">
-                                        <?=$chat["respuesta_bot"]?>
+                                        <!--<button class="btn btn-secondary" id="start"><i class="fa fa-play"></i></button>
+                                        <button class="btn btn-warning" id="stop"><i class="fa fa-stop"></i></button>-->
+
+                                        <input type="text" id="userInput" class="form-control" placeholder="Escribe tu mensaje y presiona enter...">
+                                        <button class="btn btn-primary" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
                                     </div>
-                                    <?php endforeach; ?>
-                                
-                                <?php endif; ?>
-
+                                </div>
                             </div>
-                            <div class="chat-footer">
-                                <button class="btn btn-info" title="Auto sugerencias" data-toggle="modal" data-target="#sugerencias"><i class="fab fa-facebook-messenger"></i></button>
-                                <button class="btn btn-danger clear_chat" title="Limpiar todo el Historial"><i class="fa fa-trash"></i></button>
+                            <div class="col-md-4">
 
-                                <!--<button class="btn btn-secondary" id="start"><i class="fa fa-play"></i></button>
-                                <button class="btn btn-warning" id="stop"><i class="fa fa-stop"></i></button>-->
-
-                                <input type="text" id="userInput" class="form-control" placeholder="Escribe tu mensaje y presiona enter...">
-                                <button class="btn btn-primary" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+                                <div class="card">
+                                    <div class="card-header bg-secondary">
+                                        Sugerencias para preguntar al Bot
+                                    </div>
+                                    <div class="card-body">
+                                        <?=$render?>
+                                        <?=$chosen?>
+                                        <a href="javascript:;" class="btn btn-primary btn-block usar">Usar</a>
+                                    </div>
+                                </div>
+                               
+            
                             </div>
                         </div>
 
@@ -182,35 +183,20 @@ function sendMessage() {
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById("loading").remove(); // Remover el spinner
+        document.getElementById("loading").remove();
 
-        if (data.response === "Ingrese los datos a continuación para restablecer su contraseña de HIS") {
+        if (data.response === "Ingrese los Datos para enviar su ticket de soporte") {
             chatbox.innerHTML += `
                 <div class="message bot d-block w-100">
                     <img src="<?=$_ENV["BASE_URL"]?>theme/img/boot.png" alt="Bot">
-                    <div class="mt-2">${data.response}</div> <!-- Agregamos un margen superior para separar el texto del formulario -->
+                    <div class="mt-2">${data.response}</div>
                     
                     <div class="form-group mt-3">
-                        <label><strong>Rut:</strong></label>
-                        <input type="text" class="form-control mb-2" id="rut" placeholder="Ingresa tu RUT">
-                        <label><strong>Contraseña:</strong></label>
-                        <input type="password" class="form-control mb-2" id="pass" placeholder="¿Qué contraseña desea?">
-                        <button class="btn btn-info btn-block" onclick="enviarDatos()">Enviar Datos</button>
-                    </div>
-                </div>
-                `;
-        } else if (data.response === "Muy bien te enviré un técnico para que resuelva tu problema") {
-            chatbox.innerHTML += `
-                <div class="message bot d-block w-100">
-                    <img src="<?=$_ENV["BASE_URL"]?>theme/img/boot.png" alt="Bot">
-                    <div class="mt-2">${data.response} Ingresa tus Datos</div>
-                    
-                    <div class="form-group mt-3">
-                        <label><strong>Rut:</strong></label>
-                        <input type="text" class="form-control mb-2" id="rut" placeholder="Ingresa tu RUT">
-                        <label><strong>Contraseña:</strong></label>
-                        <input type="password" class="form-control mb-2" id="pass" placeholder="¿Qué contraseña desea?">
-                        <button class="btn btn-info btn-block" onclick="enviarDatos()">Enviar Datos</button>
+                        <label><strong>Titulo:</strong></label>
+                        <input type="text" class="form-control mb-2" id="rut" placeholder="Ingresa tu Titulo que describa el problema" value="${data.user_message}">
+                        <label><strong>¿Cual es tu problema?</strong></label>
+                        <textarea class="form-control mb-2" style="min-height: 125px;"></textarea>
+                        <button class="btn btn-info btn-block" onclick="enviarDatos()">Enviar Ticket</button>
                     </div>
                 </div>
                 `;
@@ -235,6 +221,9 @@ $(document).on("click", ".usar", function(){
         document.getElementById("userInput").value = frases;
         $("#sugerencias").modal('hide');
         sendMessage();
+        $(".frases").chosen("destroy");
+        $(".frases").val("");
+        $(".frases").chosen();
     } else {
         Swal.fire({
             icon: "warning",
