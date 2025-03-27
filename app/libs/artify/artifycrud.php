@@ -34,7 +34,12 @@ function registrar_funcionarios($data, $obj){
     $rut = $data["usuario"]["rut"];
 
     if (empty($usuario) && empty($rut)) {
-        $error_msg = array("message" => "", "error" => "Debe ingresar al menos un usuario o un RUT.", "redirectionurl" => "");
+        $error_msg = array("message" => "", "error" => "Debe ingresar un usuario o un RUT, pero no ambos.", "redirectionurl" => "");
+        die(json_encode($error_msg));
+    }
+
+    if (!empty($usuario) && !empty($rut)) {
+        $error_msg = array("message" => "", "error" => "Debe ingresar solo un usuario o un RUT, no ambos.", "redirectionurl" => "");
         die(json_encode($error_msg));
     }
 

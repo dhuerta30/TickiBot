@@ -21,10 +21,17 @@ class LoginController {
 			$queryfy->where("usuario", $_SESSION["data"]["usuario"]["usuario"]);
 			$sesion_users = $queryfy->select("usuario");
 			$_SESSION["usuario"] = $sesion_users;
+
+			Redirect::to("bot");
 		}
 
-		$Sesusuario = SessionManager::get('usuario');
-		if (isset($Sesusuario)) {
+		if (isset($_SESSION["data"]["usuario"]["usuario"])) {
+			$artify = DB::ArtifyCrud();
+			$queryfy = $artify->getQueryfyObj();
+			$queryfy->where("usuario", $_SESSION["data"]["usuario"]["usuario"]);
+			$sesion_users = $queryfy->select("usuario");
+			$_SESSION["usuario"] = $sesion_users;
+
 			Redirect::to("bot");
 		}
 	}
