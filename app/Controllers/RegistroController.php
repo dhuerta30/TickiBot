@@ -64,6 +64,7 @@ class RegistroController {
                             <div class="form-group">
 								<label>avatar</label>
 								{avatar}
+								<p>(Si lo deja vacio cargará un avatar por defecto)</p>
 								<p class="ertify_help_block help-block form-text with-errors"></p>
 							</div>
 							<div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-primary w-100">Registrar</button> </div>
