@@ -27,7 +27,7 @@ class RegistroController {
 						<p class="mb-3 mt-3 text-center font-weight-bold">Tickibot Soporte con IA en tiempo Real</p>
 						<div class="form-data" v-if="!submitted">
 							<div class="form-group">
-								<label>Nombre</label>
+								<label>Nombre Completo</label>
 								{nombre}
 								<p class="ertify_help_block help-block form-text with-errors"></p>
 							</div>

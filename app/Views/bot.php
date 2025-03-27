@@ -177,30 +177,11 @@ function sendMessage() {
     .then(response => response.json())
     .then(data => {
         document.getElementById("loading").remove();
-
-        if (data.response === "Ingrese los Datos para enviar su ticket de soporte") {
             chatbox.innerHTML += `
                 <div class="message bot d-block w-100">
                     <img src="<?=$_ENV["BASE_URL"]?>theme/img/boot.png" alt="Bot">
-                    <div class="mt-2">${data.response}</div>
-                    
-                    <div class="form-group mt-3">
-                        <label><strong>Titulo:</strong></label>
-                        <input type="text" class="form-control titulo mb-2" placeholder="Ingresa tu Titulo que describa el problema" value="${data.user_message}">
-                        <label><strong>¿Cual es tu problema?</strong></label>
-                        <textarea class="form-control contenido mb-2" style="min-height: 125px;"></textarea>
-                        <button class="btn btn-info btn-block" onclick="enviarDatos()">Enviar Ticket</button>
-                    </div>
-                </div>
-                `;
-        } else {
-            chatbox.innerHTML += `
-                <div class="message bot w-100">
-                    <img src="<?=$_ENV["BASE_URL"]?>theme/img/boot.png" alt="Bot">
                     ${data.response}
                 </div>`;
-        }
-
         chatbox.scrollTop = chatbox.scrollHeight;
     });
 
@@ -268,7 +249,7 @@ function enviarDatos() {
         return;
     }
 
-    fetch("<?=$_ENV["BASE_URL"]?>mensajes", {
+    fetch("<?=$_ENV["BASE_URL"]?>enviar_tickets", {
         method: "POST",
         body: JSON.stringify({ titulo: titulo, contenido: contenido }),
         headers: { "Content-Type": "application/json" }

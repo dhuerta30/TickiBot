@@ -2712,4 +2712,19 @@ class HomeController
 			"render" => $render
 		]);
 	}
+
+	public function enviar_tickets(){
+		$request = new Request();
+
+		if ($request->getMethod() === 'POST') {
+			$titulo = $request->post("titulo");
+			$contenido = $request->post("contenido");
+			$funcionario = $_SESSION["usuario"][0]["nombre"];
+
+			$artify = DB::ArtifyCrud();
+			$queryfy = $artify->getQueryfyObj();
+			$queryfy->insert("tickets", array("funcionario" => $funcionario, "titulo" => $titulo, "contenido" => $contenido));
+			echo json_encode(["mensaje" => "Ticket creado con éxito"]);
+		}
+	}
 }
