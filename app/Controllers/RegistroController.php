@@ -36,6 +36,11 @@ class RegistroController {
 								{email}
 								<p class="ertify_help_block help-block form-text with-errors"></p>
 							</div>
+							<div class="row">
+								<div class="col-md-12 text-center mb-2">
+									<p class="font-weight-bold">Complete con Usuario o Rut</p>
+								</div>
+							</div>
                             <div class="row">
 								<div class="form-group col-md-6">
 									<label>Usuario</label>
