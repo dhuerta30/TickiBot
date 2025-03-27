@@ -268,7 +268,7 @@ function enviarDatos() {
         return;
     }
 
-    fetch("<?=$_ENV["BASE_URL"]?>mesajes", {
+    fetch("<?=$_ENV["BASE_URL"]?>mensajes", {
         method: "POST",
         body: JSON.stringify({ titulo: titulo, contenido: contenido }),
         headers: { "Content-Type": "application/json" }
