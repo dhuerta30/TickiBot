@@ -234,8 +234,8 @@ function enviarDatosFuncionario(){
 }
 
 function enviarDatos() {
-    let titulo = document.querySelector(".titulo").value;
-    let contenido = document.querySelector(".contenido").value;
+    let titulo = $(".titulo").val();
+    let contenido = $(".contenido").val();
 
     if (titulo === "" || contenido === "") {
         Swal.fire({
@@ -248,33 +248,34 @@ function enviarDatos() {
         return;
     }
 
-    fetch("<?=$_ENV["BASE_URL"]?>enviar_tickets", {
-        method: "POST",
-        headers: { 
-            "Content-Type": "application/json"
+    $.ajax({
+        type: "POST",
+        url: "<?= $_ENV["BASE_URL"] ?>enviar_tickets",
+        data: { 
+            titulo: titulo, 
+            contenido: contenido 
         },
-        body: JSON.stringify({ titulo: titulo, contenido: contenido })
-    })
-    .then(response => response.json())
-    .then(data => {
-        Swal.fire({
-            icon: "success",
-            title: "Éxito",
-            text: data.response,
-            confirmButtonColor: "#28a745",
-            confirmButtonText: "Aceptar"
-        });
-        $(".contenido").val("");
-    })
-    .catch(error => {
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "Hubo un problema al enviar los datos. Inténtalo de nuevo.",
-            confirmButtonColor: "#dc3545",
-            confirmButtonText: "Aceptar"
-        });
-        console.error("Error:", error);
+        dataType: "json",
+        success: function (data) {
+            Swal.fire({
+                icon: "success",
+                title: "Éxito",
+                text: data.response,
+                confirmButtonColor: "#28a745",
+                confirmButtonText: "Aceptar"
+            });
+            $(".contenido").val("");
+        },
+        error: function (xhr, status, error) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Hubo un problema al enviar los datos. Inténtalo de nuevo.",
+                confirmButtonColor: "#dc3545",
+                confirmButtonText: "Aceptar"
+            });
+            console.error("Error:", error);
+        }
     });
 }
 

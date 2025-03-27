@@ -325,7 +325,7 @@ class HomeController
 		$artify->relatedData('idrol','rol','idrol','nombre_rol');
 		$artify->tableColFormatting("avatar", "html",array("type" =>"html","str"=>'<img width="50" src="'.$_ENV["BASE_URL"].'app/libs/artify/uploads/{col-name}">'));
 		$artify->crudRemoveCol(array("rol","estatus","password", "token", "token_api", "expiration_token"));
-		$artify->setSearchCols(array("id","nombre","email", "usuario", "idrol"));
+		$artify->setSearchCols(array("id","nombre","email", "usuario", "rut", "idrol"));
 		$artify->setSettings("searchbox", true);
 		$artify->setSettings("addbtn", false);
 		$artify->setSettings("viewbtn", false);
