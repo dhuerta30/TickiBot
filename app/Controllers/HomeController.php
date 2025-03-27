@@ -2725,7 +2725,7 @@ class HomeController
 			$queryfy = $artify->getQueryfyObj();
 			$queryfy->insert("tickets", array(
 				"funcionario" => $funcionario,
-				"titulo" => $titulo, 
+				"titulo" => $titulo,
 				"contenido" => $contenido,
 				"estado" => "Ingresado"
 			));
