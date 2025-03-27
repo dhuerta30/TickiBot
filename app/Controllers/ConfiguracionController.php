@@ -54,7 +54,7 @@ class ConfiguracionController
         $html_template = '<div id="i57h" class="row pt-4">
                                 <div id="iyql" class="col-md"><div class="form-group">
                                     <label id="iyvph" class="form-label">Logo Login:</label>
-                                    <img class="logo_login w-25 img-thumbnail" src="'.$img[0]["logo_login"].'">
+                                    <img class="logo_login w-25 img-thumbnail" src="'.$_ENV["BASE_URL"]. 'app/libs/artify/uploads/' .$img[0]["logo_login"].'">
                                     <span id="i6jpb" class="editable">{logo_login}</span>
                                     <p class="artify_help_block help-block form-text with-errors"></p>
                                 </div>
@@ -62,7 +62,7 @@ class ConfiguracionController
                             <div id="irlr1" class="col-md">
                                 <div class="form-group">
                                     <label id="i9t5d" class="form-label">Logo Panel:</label>
-                                    <img class="logo_panel w-25 mb-3 img-thumbnail" src="'.$img[0]["logo_panel"].'">
+                                    <img class="logo_panel w-25 mb-3 img-thumbnail" src="'.$_ENV["BASE_URL"]. 'app/libs/artify/uploads/'.$img[0]["logo_panel"].'">
                                     <span id="iywri" class="editable">{logo_panel}</span>
                                     <p class="artify_help_block help-block form-text with-errors"></p>
                                     </div>

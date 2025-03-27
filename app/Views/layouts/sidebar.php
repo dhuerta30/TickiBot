@@ -5,7 +5,7 @@
         <?php 
             $configuracion = App\Controllers\HomeController::configuracion();
         ?>
-          <img class="logo_panel" src="<?=$_ENV["BASE_URL"]?>theme/img/boot.png" width="55">
+          <img class="logo_panel" src="<?=$_ENV["BASE_URL"]?>app/libs/artify/uploads/<?=$configuracion[0]["logo_panel"]?>" width="55">
          <span class="brand-text font-weight-light"></span>
      </a>
 
