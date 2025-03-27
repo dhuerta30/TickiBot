@@ -30,6 +30,14 @@ if (isset($_REQUEST["artify_instance"])) {
 }
 
 function registrar_funcionarios($data, $obj){
+    $usuario = $data["usuario"]["usuario"];
+    $rut = $data["usuario"]["rut"];
+
+    if (empty($usuario) && empty($rut)) {
+        $error_msg = array("message" => "", "error" => "Debe ingresar al menos un usuario o un RUT.", "redirectionurl" => "");
+        die(json_encode($error_msg));
+    }
+
     $avatar = $data["usuario"]["avatar"];
     if (empty($avatar)) {
         $image = ArtifyABSPATH . 'uploads/1710162578_user.png';

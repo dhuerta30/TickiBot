@@ -85,6 +85,8 @@ class RegistroController {
 		$artify->buttonHide("cancel");
         $artify->formFieldValue("idrol", "2");
         $artify->formFieldValue("estatus", "1");
+		$artify->fieldNotMandatory("usuario");
+		$artify->fieldNotMandatory("rut");
         $artify->addCallback("before_insert", "registrar_funcionarios");
 		$artify->addCallback("after_insert", "despues_de_insertar_funcionarios");
         $render = $artify->dbTable("usuario")->render("insertform");
