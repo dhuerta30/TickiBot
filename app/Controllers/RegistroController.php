@@ -32,7 +32,7 @@ class RegistroController {
 								<p class="ertify_help_block help-block form-text with-errors"></p>
 							</div>
 							<div class="form-group">
-								<label>correo</label>
+								<label>Correo</label>
 								{email}
 								<p class="ertify_help_block help-block form-text with-errors"></p>
 							</div>
@@ -69,7 +69,7 @@ class RegistroController {
 								<p class="ertify_help_block help-block form-text with-errors"></p>
 							</div>
                             <div class="form-group">
-								<label>avatar</label>
+								<label>Avatar</label>
 								{avatar}
 								<p>(Si lo deja vacio cargará un avatar por defecto)</p>
 								<p class="ertify_help_block help-block form-text with-errors"></p>
