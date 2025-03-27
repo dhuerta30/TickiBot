@@ -177,11 +177,11 @@ function sendMessage() {
     .then(response => response.json())
     .then(data => {
         document.getElementById("loading").remove();
-            chatbox.innerHTML += `
-                <div class="message bot d-block w-100">
-                    <img src="<?=$_ENV["BASE_URL"]?>theme/img/boot.png" alt="Bot">
-                    ${data.response}
-                </div>`;
+        chatbox.innerHTML += `
+            <div class="message bot d-block w-100">
+                <img src="<?=$_ENV["BASE_URL"]?>theme/img/boot.png" alt="Bot">
+                ${data.response}
+            </div>`;
         chatbox.scrollTop = chatbox.scrollHeight;
     });
 

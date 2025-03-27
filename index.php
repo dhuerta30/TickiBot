@@ -18,6 +18,7 @@ $router->get('/recuperar', 'LoginController@reset');
 $router->get('/registrar', 'RegistroController@registrar');
 
 $router->get('/modulos', 'HomeController@modulos');
+$router->post('/enviar_tickets', 'HomeController@enviar_tickets');
 $router->get('/tickets', 'HomeController@tickets');
 $router->get('/eliminar_historial/{usuario}', 'HomeController@eliminar_historial');
 $router->get('/bot', 'HomeController@bot');
