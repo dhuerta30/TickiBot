@@ -2695,10 +2695,15 @@ class HomeController
 	public function tickets(){
 		$artify = DB::ArtifyCrud();
 		$artify->fieldTypes("estado", "select");
-		$artify->fieldDataBinding("estado", array("Ingresado"=> "Ingresado", "Anulado" => "Anulado", "Finalizado"=> "Finalizado"), "", "","array");
+		$artify->fieldDataBinding("estado", array(
+			"Ingresado"=> "Ingresado",
+			"Anulado" => "Anulado",
+			"Finalizado"=> "Finalizado"
+		), "", "","array");
 		$artify->colRename("id_tickets", "ID");
 		$artify->setSettings("totalRecordsInfo", true);
 		$artify->setSettings("searchbox", true);
+		$artify->setSettings("addbtn", false);
 		$artify->setSettings("editbtn", true);
 		$artify->setSettings("delbtn", true);
 		$artify->buttonHide("submitBtnSaveBack");

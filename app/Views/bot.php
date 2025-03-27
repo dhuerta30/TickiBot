@@ -52,10 +52,6 @@
                                     </div>
                                     <div class="chat-footer">
                                         <button class="btn btn-danger clear_chat" title="Limpiar todo el Historial"><i class="fa fa-trash"></i></button>
-
-                                        <!--<button class="btn btn-secondary" id="start"><i class="fa fa-play"></i></button>
-                                        <button class="btn btn-warning" id="stop"><i class="fa fa-stop"></i></button>-->
-
                                         <input type="text" id="userInput" class="form-control" placeholder="Escribe tu mensaje y presiona enter...">
                                         <button class="btn btn-primary" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
                                     </div>
@@ -73,7 +69,6 @@
                                         <a href="javascript:;" class="btn btn-primary btn-block usar">Usar</a>
                                     </div>
                                 </div>
-                               
             
                             </div>
                         </div>
@@ -191,9 +186,9 @@ function sendMessage() {
                     
                     <div class="form-group mt-3">
                         <label><strong>Titulo:</strong></label>
-                        <input type="text" class="form-control mb-2" id="rut" placeholder="Ingresa tu Titulo que describa el problema" value="${data.user_message}">
+                        <input type="text" class="form-control titulo mb-2" placeholder="Ingresa tu Titulo que describa el problema" value="${data.user_message}">
                         <label><strong>¿Cual es tu problema?</strong></label>
-                        <textarea class="form-control mb-2" style="min-height: 125px;"></textarea>
+                        <textarea class="form-control contenido mb-2" style="min-height: 125px;"></textarea>
                         <button class="btn btn-info btn-block" onclick="enviarDatos()">Enviar Ticket</button>
                     </div>
                 </div>
