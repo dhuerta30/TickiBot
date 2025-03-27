@@ -234,8 +234,8 @@ function enviarDatosFuncionario(){
 }
 
 function enviarDatos() {
-    let titulo = document.querySelector(".titulo").value.trim();
-    let contenido = document.querySelector(".contenido").value.trim();
+    let titulo = document.querySelector(".titulo").value;
+    let contenido = document.querySelector(".contenido").value;
 
     if (titulo === "" || contenido === "") {
         Swal.fire({
@@ -250,8 +250,10 @@ function enviarDatos() {
 
     fetch("<?=$_ENV["BASE_URL"]?>enviar_tickets", {
         method: "POST",
-        body: JSON.stringify({ titulo: titulo, contenido: contenido }),
-        headers: { "Content-Type": "application/json" }
+        headers: { 
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ titulo: titulo, contenido: contenido })
     })
     .then(response => response.json())
     .then(data => {
@@ -262,6 +264,7 @@ function enviarDatos() {
             confirmButtonColor: "#28a745",
             confirmButtonText: "Aceptar"
         });
+        $(".contenido").val("");
     })
     .catch(error => {
         Swal.fire({

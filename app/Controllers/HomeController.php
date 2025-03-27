@@ -2722,13 +2722,14 @@ class HomeController
 			$funcionario = $_SESSION["usuario"][0]["nombre"];
 
 			$artify = DB::ArtifyCrud();
-			$queryfy = $artify->getQueryfyObj();
-			$queryfy->insert("tickets", array(
+			$Queryfy = $artify->getQueryfyObj();
+			$Queryfy->insert("tickets", array(
 				"funcionario" => $funcionario,
 				"titulo" => $titulo,
 				"contenido" => $contenido,
 				"estado" => "Ingresado"
 			));
+
 			echo json_encode(["mensaje" => "Ticket creado con éxito"]);
 		}
 	}
