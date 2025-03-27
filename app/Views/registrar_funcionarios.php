@@ -36,17 +36,29 @@
         $('.artify_error').hide();
         $('.artify_message').hide();
 
-        Swal.fire({
-            title: "Genial!",
-            text: "Ya puede Iniciar Sesión",
-            icon: "success",
-            confirmButtonText: "Aceptar",
-            allowOutsideClick: false
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href="<?=$_ENV["BASE_URL"]?>login";
-            }
-        });
+        let json = JSON.parse(data);
+
+        if(json.message){
+            Swal.fire({
+                title: "Genial!",
+                text: "Ya puede Iniciar Sesión",
+                icon: "success",
+                confirmButtonText: "Aceptar",
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href="<?=$_ENV["BASE_URL"]?>login";
+                }
+            });
+        } else {
+            Swal.fire({
+                title: "Genial!",
+                text: json.error,
+                icon: "error",
+                confirmButtonText: "Aceptar",
+                allowOutsideClick: false
+            })
+        }
      });
 </script>
 </body>
