@@ -15,10 +15,10 @@ class LoginController {
 	{
 		SessionManager::startSession();
 
-		if (isset($_SESSION["data"]["usuario"]["usuario"])) {
+		if (isset($_SESSION["data"]["usuario"]["rut"])) {
 			$artify = DB::ArtifyCrud();
 			$queryfy = $artify->getQueryfyObj();
-			$queryfy->where("usuario", $_SESSION["data"]["usuario"]["usuario"]);
+			$queryfy->where("rut", $_SESSION["data"]["usuario"]["rut"]);
 			$sesion_users = $queryfy->select("usuario");
 			$_SESSION["usuario"] = $sesion_users;
 
