@@ -2767,7 +2767,6 @@ class HomeController
 				"contenido" => $contenido,
 				"estado" => "Ingresado"
 			));
-
 			echo json_encode(["mensaje" => "Ticket creado con éxito"]);
 		}
 	}
