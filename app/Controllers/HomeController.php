@@ -2559,6 +2559,7 @@ class HomeController
 			<div class='row'>
 				<div class='col-md-12'>
 					<button class='btn btn-primary btn-block'>Enviar Ticket</button>
+					<button type='reset' class='btn btn-danger btn-block pdocrud-cancel-btn'>Limpiar</button>
 				</div>
 			</div>
 		");
@@ -2583,6 +2584,8 @@ class HomeController
 		$ticket->fieldDataAttr("funcionario", array("style"=>"display:none"));
 		$ticket->buttonHide("submitBtn");
 		$ticket->buttonHide("cancel");
+		$ticket->fieldRenameLable("titulo", "Asunto");
+		$ticket->fieldRenameLable("contenido", "¿Cuál es tu problema?");
 
 		$render2 = $ticket->dbTable("tickets")->render("insertform");
 
