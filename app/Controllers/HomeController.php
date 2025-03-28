@@ -2553,9 +2553,36 @@ class HomeController
 		$render = $artify->dbTable("messages")->render("selectform");
 		$chosen = $artify->loadPluginJsCode("chosen",".frases");
 
+		$funcionario = $_SESSION["usuario"][0]["nombre"];
+		$ticket = DB::ArtifyCrud(true);
+		$ticket->fieldTypes("estado", "select");
+		$ticket->fieldDataBinding("estado", array(
+			"Ingresado"=> "Ingresado",
+			"Anulado" => "Anulado",
+			"Finalizado"=> "Finalizado"
+		), "", "","array");
+		$ticket->colRename("id_tickets", "ID");
+		$ticket->setSettings("totalRecordsInfo", true);
+		$ticket->setSettings("searchbox", true);
+		$ticket->setSettings("addbtn", false);
+		$ticket->setSettings("editbtn", true);
+		$ticket->setSettings("delbtn", true);
+		$ticket->buttonHide("submitBtnSaveBack");
+		$ticket->formFieldValue("funcionario", $funcionario);
+		$ticket->formFieldValue("estado", "Ingresado");
+		$ticket->fieldHideLable("estado");
+		$ticket->fieldDataAttr("estado", array("style"=>"display:none"));
+		$ticket->fieldHideLable("funcionario");
+		$ticket->fieldDataAttr("funcionario", array("style"=>"display:none"));
+		$ticket->buttonHide("submitBtn");
+		$ticket->buttonHide("cancel");
+
+		$render2 = $ticket->dbTable("tickets")->render("insertform");
+
 		View::render('bot', [
 			'render' => $render,
-			'chosen' => $chosen
+			'chosen' => $chosen,
+			'render2' => $render2
 		]);
 	}
 

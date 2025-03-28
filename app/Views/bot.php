@@ -68,6 +68,16 @@
                                         <a href="javascript:;" class="btn btn-primary btn-block usar">Usar</a>
                                     </div>
                                 </div>
+
+
+                                <div class="card">
+                                    <div class="card-header bg-secondary">
+                                       Ingresar Tickets de Soporte
+                                    </div>
+                                    <div class="card-body">
+                                        <?=$render2?>
+                                    </div>
+                                </div>
             
                             </div>
                         </div>
