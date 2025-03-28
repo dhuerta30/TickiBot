@@ -2738,6 +2738,7 @@ class HomeController
 			"Finalizado"=> "Finalizado"
 		), "", "","array");
 		$artify->colRename("id_tickets", "ID");
+		$artify->setSettings("function_filter_and_search", true);
 		$artify->setSettings("totalRecordsInfo", true);
 		$artify->setSettings("searchbox", true);
 		$artify->setSettings("addbtn", false);
