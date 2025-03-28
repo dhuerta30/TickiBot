@@ -2555,6 +2555,13 @@ class HomeController
 
 		$funcionario = $_SESSION["usuario"][0]["nombre"];
 		$ticket = DB::ArtifyCrud(true);
+		$ticket->formStaticFields("boton", "html", "
+			<div class='row'>
+				<div class='col-md-12'>
+					<button class='btn btn-primary btn-block'>Enviar Ticket</button>
+				</div>
+			</div>
+		");
 		$ticket->fieldTypes("estado", "select");
 		$ticket->fieldDataBinding("estado", array(
 			"Ingresado"=> "Ingresado",
