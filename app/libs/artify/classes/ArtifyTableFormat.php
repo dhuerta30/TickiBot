@@ -239,7 +239,7 @@ Class ArtifyTableFormat extends ArtifyHelper {
         if (isset($parameters["length"]) && strlen($val) > $parameters["length"]) {
             $readmoretext = "read more";
             $len = $parameters["length"];
-            $readmore = isset($parameters["showreadmore"]) ? "<a data-length=\"$len\" href=\"javascript:;\" class=\"artify-actions\" data-hide=\"false\" data-action=\"read_more\" data-read-more=\"$val\">" . $readmoretext . "</a>" : "";
+            $readmore = isset($parameters["showreadmore"]) ? "<a data-length=\"$len\" href=\"javascript:;\" class=\"artify-actions\" data-hide=\"false\" data-action=\"read_more\" data-read-more=\"$val\"><button class=\"btn btn-info btn-sm\">Leer más <i class=\"fa fa-arrow-right\"></i></button></a>" : "";
             return "<p>" . substr($val, 0, $parameters["length"]) . "...." . "</p>" . $readmore;
         }
         return $val;
