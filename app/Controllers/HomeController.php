@@ -2675,7 +2675,6 @@ class HomeController
 		return $data;
 	}
 
-
 	public static function sugerencia_chat(){
 		$artify = DB::ArtifyCrud();
 		$Queryfy = $artify->getQueryfyObj();
