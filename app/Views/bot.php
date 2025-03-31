@@ -125,6 +125,8 @@
     $(document).on("artify_after_submission", function(event, obj, data) {
         let json = JSON.parse(data);
 
+        $(".alert-success, .alert-danger").remove();
+
         if (json.message) {
             Swal.fire({
                 icon: "success",
@@ -133,6 +135,8 @@
                 allowOutsideClick: false
             }).then((result) => {
                 if (result.isConfirmed) {
+                    $(".titulo").val("");
+                    $(".contenido").val("");
                     $(".artify-back").click();
                 }
             });

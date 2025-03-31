@@ -2553,8 +2553,10 @@ class HomeController
 		$render = $artify->dbTable("messages")->render("selectform");
 		$chosen = $artify->loadPluginJsCode("chosen",".frases");
 
-		$funcionario = $_SESSION["usuario"][0]["nombre"];
+		$funcionario = $_SESSION["usuario"][0]["id"];
 		$ticket = DB::ArtifyCrud(true);
+		$ticket->fieldCssClass("titulo", array("titulo"));
+		$ticket->fieldCssClass("contenido", array("contenido"));
 		$ticket->formStaticFields("boton", "html", "
 			<div class='row'>
 				<div class='col-md-12'>
@@ -2745,6 +2747,7 @@ class HomeController
 		$artify->setSettings("editbtn", true);
 		$artify->setSettings("delbtn", true);
 		$artify->buttonHide("submitBtnSaveBack");
+		$artify->relatedData("funcionario", "usuario", "id", "nombre");
 		$render = $artify->dbTable("tickets")->render();
 		View::render("tickets", [
 			"render" => $render
@@ -2757,7 +2760,7 @@ class HomeController
 		if ($request->getMethod() === 'POST') {
 			$titulo = $request->post("titulo");
 			$contenido = $request->post("contenido");
-			$funcionario = $_SESSION["usuario"][0]["nombre"];
+			$funcionario = $_SESSION["usuario"][0]["id"];
 
 			$artify = DB::ArtifyCrud();
 			$Queryfy = $artify->getQueryfyObj();
