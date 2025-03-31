@@ -478,7 +478,7 @@ class HomeController
         $respaldos->tableColFormatting("archivo", "html", array("type" => "html", "str" => "<a class='btn btn-success btn-sm' href=\"".$_ENV["BASE_URL"]."app/libs/artify/uploads/{col-name}\" data-attribute=\"abc-{col-name}\"><i class=\"fa fa-download\"></i> Descargar Respaldo</a>"));
         $respaldos->setSettings("searchbox", true);
 		$respaldos->setSettings("addbtn", false);
-		$respaldos->setSettings('editbtn', true);    
+		$respaldos->setSettings('editbtn', true);
 		$respaldos->setSettings('delbtn', true);
         $respaldos->setSettings("viewbtn", false);
 		$respaldos->setSettings("function_filter_and_search", true);
