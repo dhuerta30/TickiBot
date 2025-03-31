@@ -296,7 +296,7 @@ $(document).on("click", ".clear_chat", function(){
     }).then((result) => {
         if (result.isConfirmed) {
 
-            fetch(`<?=$_ENV["BASE_URL"]?>eliminar_historial/<?=$_SESSION["usuario"][0]["usuario"]?>`, {
+            fetch(`<?=$_ENV["BASE_URL"]?>eliminar_historial/<?=$_SESSION["usuario"][0]["id"]?>`, {
                 method: "GET",
                 headers: { "Content-Type": "application/json" }
             })
