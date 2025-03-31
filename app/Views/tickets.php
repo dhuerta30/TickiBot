@@ -65,5 +65,24 @@
     }
     
   });
+
+  $(document).on("artify_after_submission", function(event, obj, data) {
+        let json = JSON.parse(data);
+
+        $(".alert-success, .alert-danger").remove();
+
+        if (json.message) {
+            Swal.fire({
+                icon: "success",
+                text: json["message"],
+                confirmButtonText: "Aceptar",
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(".artify-back").click();
+                }
+            });
+        }
+    });
 </script>
 <?php require 'layouts/footer.php'; ?>

@@ -2554,6 +2554,9 @@ class HomeController
 		$chosen = $artify->loadPluginJsCode("chosen",".frases");
 
 		$funcionario = $_SESSION["usuario"][0]["id"];
+		$fecha = date("Y-m-d");
+		$hora = date("H:i:s");
+
 		$ticket = DB::ArtifyCrud(true);
 		$ticket->fieldCssClass("titulo", array("titulo"));
 		$ticket->fieldCssClass("contenido", array("contenido"));
@@ -2579,9 +2582,18 @@ class HomeController
 		$ticket->setSettings("delbtn", true);
 		$ticket->buttonHide("submitBtnSaveBack");
 		$ticket->formFieldValue("funcionario", $funcionario);
+		$ticket->formFieldValue("fecha", $fecha);
+		$ticket->formFieldValue("hora", $hora);
 		$ticket->formFieldValue("estado", "Ingresado");
 		$ticket->fieldHideLable("estado");
 		$ticket->fieldDataAttr("estado", array("style"=>"display:none"));
+
+		$ticket->fieldHideLable("fecha");
+		$ticket->fieldDataAttr("fecha", array("style"=>"display:none"));
+
+		$ticket->fieldHideLable("hora");
+		$ticket->fieldDataAttr("hora", array("style"=>"display:none"));
+
 		$ticket->fieldHideLable("funcionario");
 		$ticket->fieldDataAttr("funcionario", array("style"=>"display:none"));
 		$ticket->buttonHide("submitBtn");
@@ -2740,6 +2752,7 @@ class HomeController
 			"Finalizado"=> "Finalizado"
 		), "", "","array");
 		$artify->colRename("id_tickets", "ID");
+		$artify->tableColFormatting("fecha", "date",array("format" =>"d/m/Y"));
 		$artify->tableColFormatting("estado", "replace", array("Ingresado" =>"<div class='badge badge-success'>Ingresado</div>"));
 		$artify->tableColFormatting("estado", "replace", array("Anulado" =>"<div class='badge badge-danger'>Anulado</div>"));
 		$artify->tableColFormatting("estado", "replace", array("Finalizado" =>"<div class='badge badge-secondary'>Finalizado</div>"));
@@ -2755,25 +2768,5 @@ class HomeController
 		View::render("tickets", [
 			"render" => $render
 		]);
-	}
-
-	public function enviar_tickets(){
-		$request = new Request();
-
-		if ($request->getMethod() === 'POST') {
-			$titulo = $request->post("titulo");
-			$contenido = $request->post("contenido");
-			$funcionario = $_SESSION["usuario"][0]["id"];
-
-			$artify = DB::ArtifyCrud();
-			$Queryfy = $artify->getQueryfyObj();
-			$Queryfy->insert("tickets", array(
-				"funcionario" => $funcionario,
-				"titulo" => $titulo,
-				"contenido" => $contenido,
-				"estado" => "Ingresado"
-			));
-			echo json_encode(["mensaje" => "Ticket creado con éxito"]);
-		}
 	}
 }

@@ -247,52 +247,6 @@ function enviarDatosFuncionario(){
     }
 }
 
-function enviarDatos() {
-    let titulo = $(".titulo").val();
-    let contenido = $(".contenido").val();
-
-    if (titulo === "" || contenido === "") {
-        Swal.fire({
-            icon: "warning",
-            title: "Campos vacíos",
-            text: "Por favor, ingresa todos los datos antes de continuar.",
-            confirmButtonColor: "#007bff",
-            confirmButtonText: "Aceptar"
-        });
-        return;
-    }
-
-    $.ajax({
-        type: "POST",
-        url: "<?= $_ENV["BASE_URL"] ?>enviar_tickets",
-        data: { 
-            titulo: titulo, 
-            contenido: contenido 
-        },
-        dataType: "json",
-        success: function (data) {
-            Swal.fire({
-                icon: "success",
-                title: "Éxito",
-                text: data.response,
-                confirmButtonColor: "#28a745",
-                confirmButtonText: "Aceptar"
-            });
-            $(".contenido").val("");
-        },
-        error: function (xhr, status, error) {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "Hubo un problema al enviar los datos. Inténtalo de nuevo.",
-                confirmButtonColor: "#dc3545",
-                confirmButtonText: "Aceptar"
-            });
-            console.error("Error:", error);
-        }
-    });
-}
-
 let inactivityTimeout;
 
 // Función para mostrar mensaje de inactividad
