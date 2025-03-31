@@ -2604,6 +2604,13 @@ class HomeController
 		$render2 = $ticket->dbTable("tickets")->render("insertform");
 
 		$historico = DB::ArtifyCrud(true);
+		$historico->where("usuario", $funcionario);
+		$historico->setSearchCols(array("mensaje_usuario", "respuesta_bot", "fecha", "hora"));
+		$historico->crudRemoveCol(array("id_historial_chat", "usuario"));
+		$historico->setSettings("function_filter_and_search", true);
+		$historico->tableHeading("Historial de mensajes");
+		$historico->setSettings("searchbox", true);
+		$historico->setSettings("addbtn", false);
 		$render3 = $historico->dbTable("historial_chat")->render();
 
 		View::render('bot', [

@@ -83,12 +83,18 @@
                         </div>
 
                     </div>
+                    <div class="col-md-12 mt-3">
+                        <?=$render3?>
+                    </div>
                 </div>
 
 
             </div>
         </div>
     </section>
+</div>
+<div id="artify-ajax-loader">
+    <img width="300" src="<?=$_ENV["BASE_URL"]?>app/libs/artify/images/ajax-loader.gif" class="artify-img-ajax-loader"/>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="<?=$_ENV["BASE_URL"]?>js/sweetalert2.all.min.js"></script>
