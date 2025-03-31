@@ -2611,6 +2611,8 @@ class HomeController
 		$historico->tableHeading("Historial de mensajes");
 		$historico->setSettings("searchbox", true);
 		$historico->setSettings("addbtn", false);
+		$historico->setSettings("editbtn", false);
+		$historico->setSettings("delbtn", true);
 		$render3 = $historico->dbTable("historial_chat")->render();
 
 		View::render('bot', [
