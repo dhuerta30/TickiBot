@@ -2613,6 +2613,7 @@ class HomeController
 		$historico->setSettings("addbtn", false);
 		$historico->setSettings("editbtn", false);
 		$historico->setSettings("delbtn", true);
+		$historico->setLangData("no_data", "No se Encontraron Mensajes en el Historial");
 		$render3 = $historico->dbTable("historial_chat")->render();
 
 		View::render('bot', [
