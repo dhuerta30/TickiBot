@@ -2603,10 +2603,14 @@ class HomeController
 
 		$render2 = $ticket->dbTable("tickets")->render("insertform");
 
+		$historico = DB::ArtifyCrud(true);
+		$render3 = $historico->dbTable("historial_chat")->render();
+
 		View::render('bot', [
 			'render' => $render,
 			'chosen' => $chosen,
-			'render2' => $render2
+			'render2' => $render2,
+			'render3' => $render3
 		]);
 	}
 
