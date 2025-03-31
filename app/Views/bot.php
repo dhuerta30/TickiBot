@@ -26,7 +26,7 @@
 
                                     <div id="chatbox">
                                         <?php 
-                                            $usuario = $_SESSION['usuario'][0]["usuario"];
+                                            $usuario = $_SESSION['usuario'][0]["id"];
                                             $historial_chat = App\Controllers\HomeController::historial_chat($usuario);
                                         ?>
 
@@ -233,8 +233,8 @@ $(document).on("click", ".usar", function(){
 document.getElementById("userInput").addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
-        sendMessage();
         $("#artify_search_btn").click();
+        sendMessage();
     }
 });
 
