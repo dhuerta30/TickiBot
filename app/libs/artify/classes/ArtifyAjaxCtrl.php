@@ -10,7 +10,7 @@ Class ArtifyAjaxCtrl {
 
         $instanceKey = filter_var($_REQUEST["artify_instance"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         
-        if(!isset($_SESSION["artify_sess"][$instanceKey])){
+        if (!isset($_SESSION["artify_sess"][$instanceKey])) {
             die("La sesión ha caducado. Actualice su página para continuar.");
         }
 
@@ -20,7 +20,8 @@ Class ArtifyAjaxCtrl {
         }
 
         $artify = @unserialize($artifySerialized);
-        if ($artify === false) {
+        
+        if ($artify === false || !($artify instanceof Artify)) {
             die("Error al procesar la solicitud.");
         }
 
