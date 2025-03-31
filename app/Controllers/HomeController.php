@@ -2771,6 +2771,7 @@ class HomeController
 		), "", "","array");
 		$artify->colRename("id_tickets", "ID");
 		$artify->fieldDataAttr("funcionario", array("disabled"=>"disabled"));
+		$artify->fieldDataAttr("estado", array("disabled"=>"disabled"));
 		$artify->fieldDataAttr("fecha", array("readonly"=>"true"));
 		$artify->fieldDataAttr("hora", array("readonly"=>"true"));
 		$artify->tableColFormatting("fecha", "date",array("format" =>"d/m/Y"));
