@@ -2762,6 +2762,7 @@ class HomeController
 
 	public function tickets(){
 		$artify = DB::ArtifyCrud();
+		$artify->formDisplayInPopup();
 		$artify->fieldTypes("estado", "select");
 		$artify->fieldDataBinding("estado", array(
 			"Ingresado"=> "Ingresado",
@@ -2769,6 +2770,9 @@ class HomeController
 			"Finalizado"=> "Finalizado"
 		), "", "","array");
 		$artify->colRename("id_tickets", "ID");
+		$artify->fieldDataAttr("funcionario", array("disabled"=>"disabled"));
+		$artify->fieldDataAttr("fecha", array("readonly"=>"true"));
+		$artify->fieldDataAttr("hora", array("readonly"=>"true"));
 		$artify->tableColFormatting("fecha", "date",array("format" =>"d/m/Y"));
 		$artify->tableColFormatting("estado", "replace", array("Ingresado" =>"<div class='badge badge-success'>Ingresado</div>"));
 		$artify->tableColFormatting("estado", "replace", array("Anulado" =>"<div class='badge badge-danger'>Anulado</div>"));
