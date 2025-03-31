@@ -143,7 +143,7 @@
                 if (result.isConfirmed) {
                     $(".titulo").val("");
                     $(".contenido").val("");
-                    $(".artify-back").click();
+                    $("#artify_search_btn").click();
                 }
             });
         }
