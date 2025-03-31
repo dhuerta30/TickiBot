@@ -2740,6 +2740,9 @@ class HomeController
 			"Finalizado"=> "Finalizado"
 		), "", "","array");
 		$artify->colRename("id_tickets", "ID");
+		$artify->tableColFormatting("estado", "replace", array("Ingresado" =>"<div class='badge badge-success'>Ingresado</div>"));
+		$artify->tableColFormatting("estado", "replace", array("Anulado" =>"<div class='badge badge-danger'>Anulado</div>"));
+		$artify->tableColFormatting("estado", "replace", array("Finalizado" =>"<div class='badge badge-secondary'>Finalizado</div>"));
 		$artify->setSettings("function_filter_and_search", true);
 		$artify->setSettings("totalRecordsInfo", true);
 		$artify->setSettings("searchbox", true);
