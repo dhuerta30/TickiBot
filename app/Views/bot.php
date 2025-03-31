@@ -234,6 +234,7 @@ document.getElementById("userInput").addEventListener("keypress", function(event
     if (event.key === "Enter") {
         event.preventDefault();
         sendMessage();
+        $("#artify_search_btn").click();
     }
 });
 
