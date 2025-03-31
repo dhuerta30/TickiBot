@@ -127,6 +127,10 @@
         if(dataAction == "edit"){
         
         }
+
+        if(dataAction == "delete"){
+            $("#artify_search_btn").click();
+        }
     });
     $(document).on("artify_after_submission", function(event, obj, data) {
         let json = JSON.parse(data);
