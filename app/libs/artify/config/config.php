@@ -120,7 +120,7 @@ $config["enumToSelect"] = false;
 //whether to convert "set" data type to select dropdown automatically  - added in v 3.1
 $config["setToSelect"] = false;
 //whether to enable auto suggestion in search or not  - added in v 3.6
-$config["autoSuggestion"] = false;
+$config["autoSuggestion"] = true;
 //whether to show "all" or not text in search drop down box  - added in v 3.6
 $config["showAllSearch"] = true;
 //whether to reset form after data submission or not  - added in v 3.6
