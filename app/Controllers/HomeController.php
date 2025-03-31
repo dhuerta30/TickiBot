@@ -2632,7 +2632,7 @@ class HomeController
 			date_default_timezone_set("America/Santiago");
 			$fecha = date('Y-m-d');
 			$hora = date('G:i:s');
-			$usuario = $_SESSION["usuario"][0]["usuario"];
+			$usuario = $_SESSION["usuario"][0]["id"];
 
 			$data = json_decode(file_get_contents("php://input"), true);
 			$message = $data["message"];
