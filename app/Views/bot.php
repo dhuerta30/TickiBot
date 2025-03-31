@@ -19,7 +19,7 @@
                         <div class="row">
 
                             <div class="col-md-8">
-                                <div class="chat-container">
+                                <div class="chat-container mb-3">
                                     <div class="chat-header">Tickibot - Soporte en tiempo real con IA</div>
 
                                     <input type="text" id="search-messages" class="form-control mt-2 mb-2" placeholder="Buscar mensajes...">
