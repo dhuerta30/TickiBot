@@ -129,7 +129,7 @@
         }
 
         if(dataAction == "delete"){
-            $("#artify_search_btn").click();
+
         }
     });
     $(document).on("artify_after_submission", function(event, obj, data) {
@@ -304,6 +304,7 @@ $(document).on("click", ".clear_chat", function(){
             .then(data => {
                 $(".user").remove();
                 $(".bot").remove();
+                $("#artify_search_btn").click();
                 Swal.fire({
                     icon: "success",
                     text: "Se ha Limpiado el Historial!",
