@@ -2605,9 +2605,10 @@ class HomeController
 
 		$historico = DB::ArtifyCrud(true);
 		$historico->where("usuario", $funcionario);
+		$historico->tableColFormatting("respuesta_bot", "readmore", array("length"=> 30,"showreadmore"=>true));
 		$historico->tableColFormatting("fecha", "date",array("format" =>"d/m/Y"));
 		$historico->setSearchCols(array("mensaje_usuario", "respuesta_bot", "fecha", "hora"));
-		$historico->crudRemoveCol(array("id_historial_chat", "usuario", "respuesta_bot"));
+		$historico->crudRemoveCol(array("id_historial_chat", "usuario"));
 		$historico->setSettings("function_filter_and_search", true);
 		$historico->tableHeading("Historial de mensajes");
 		$historico->setSettings("searchbox", true);
