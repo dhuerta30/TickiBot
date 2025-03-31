@@ -214,6 +214,7 @@ $(document).on("click", ".usar", function(){
         document.getElementById("userInput").value = frases;
         $("#sugerencias").modal('hide');
         sendMessage();
+        $("#artify_search_btn").click();
         $(".frases").chosen("destroy");
         $(".frases").val("");
         $(".frases").chosen();
