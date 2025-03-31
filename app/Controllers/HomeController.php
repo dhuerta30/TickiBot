@@ -2607,7 +2607,7 @@ class HomeController
 		$historico->where("usuario", $funcionario);
 		$historico->tableColFormatting("fecha", "date",array("format" =>"d/m/Y"));
 		$historico->setSearchCols(array("mensaje_usuario", "respuesta_bot", "fecha", "hora"));
-		$historico->crudRemoveCol(array("id_historial_chat", "usuario"));
+		$historico->crudRemoveCol(array("id_historial_chat", "usuario", "respuesta_bot"));
 		$historico->setSettings("function_filter_and_search", true);
 		$historico->tableHeading("Historial de mensajes");
 		$historico->setSettings("searchbox", true);
