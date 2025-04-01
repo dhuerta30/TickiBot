@@ -29,7 +29,6 @@
 <?php require "layouts/footer.php"; ?>
 <script src="<?=$_ENV["BASE_URL"]?>js/sweetalert2.all.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ckfinder/3.5.2/ckfinder.js"></script>
 <script>
     $(document).on("artify_after_ajax_action", function(event, obj, data){
         var dataAction = obj.getAttribute('data-action');
@@ -63,6 +62,9 @@
     $(document).on("artify_on_load artify_after_submission artify_after_ajax_action", function (event, obj, data) {
         CKEDITOR.replace("bWVzc2FnZXMjJGNvbnRlbmlkb0AzZHNmc2RmKio5OTM0MzI0", {
             height: 300,
+            extraPlugins: 'uploadimage',
+            filebrowserUploadUrl: "<?=$_ENV["BASE_URL"]?>cargar_imagen",
+            filebrowserUploadMethod: 'form',
             toolbar: [
                 { name: "document", items: ["Source"] },
                 { name: "clipboard", items: ["Cut", "Copy", "Paste", "Undo", "Redo"] },
@@ -91,12 +93,10 @@
                     name: "insert",
                     items: ["Image", "Table", "HorizontalRule", "SpecialChar"]
                 },
-                { name: "tools", items: ["Maximize", "ShowBlocks"] }
-            ],
-            filebrowserBrowseUrl: 'https://yourdomain.com/ckfinder/ckfinder.html', // Ajusta la URL
-            filebrowserUploadUrl: 'https://yourdomain.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+                { 
+                    name: "tools", items: ["Maximize", "ShowBlocks"] 
+                }
+            ]
         });
-
-        CKFinder.setupCKEditor(editor);
     });
 </script>

@@ -27,6 +27,7 @@ $router->get('/perfil', 'HomeController@perfil');
 $router->get('/respaldos', 'HomeController@respaldos');
 $router->get('/menu', 'HomeController@menu');
 $router->get('/acceso_menus', 'HomeController@acceso_menus');
+$router->post('/cargar_imagen', 'HomeController@cargar_imagen');
 
 $router->post('/generarToken', 'HomeController@generarToken');
 $router->post('/obtener_campos_relacion_union_interna', 'HomeController@obtener_campos_relacion_union_interna');

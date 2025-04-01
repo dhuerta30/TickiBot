@@ -2791,4 +2791,23 @@ class HomeController
 			"render" => $render
 		]);
 	}
+
+	public function cargar_imagen(){
+		$request = new Request();
+	
+		if ($request->getMethod() === 'POST') {
+			if ($_FILES['upload']) {
+				$file = $_FILES['upload'];
+				$uploadDir = "uploads/"; // Carpeta donde se guardarán las imágenes
+				$filePath = $uploadDir . basename($file['name']);
+			
+				if (move_uploaded_file($file['tmp_name'], $filePath)) {
+					$url = "/uploads/" . basename($file['name']);
+					echo json_encode(["url" => $url]); // CKEditor espera un JSON con la URL de la imagen
+				} else {
+					echo json_encode(["error" => "No se pudo subir la imagen."]);
+				}
+			}
+		}
+	}
 }
