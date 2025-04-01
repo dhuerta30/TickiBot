@@ -2546,6 +2546,7 @@ class HomeController
 		$artify->formFields(array("user_message"));
 		$artify->fieldRenameLable("user_message", "");
 		$artify->fieldTypes("user_message", "select");
+		$artify->fieldNotMandatory("user_message");
 		$artify->fieldDataBinding("user_message", "messages", "user_message as messages", "user_message", "db");
 		$artify->setLangData("login", "Usar");
 		$artify->buttonHide("submitBtn");
@@ -2793,20 +2794,16 @@ class HomeController
 	}
 
 	public function cargar_imagen(){
-		$request = new Request();
-	
-		if ($request->getMethod() === 'POST') {
-			if ($_FILES['upload']) {
-				$file = $_FILES['upload'];
-				$uploadDir = "uploads/"; // Carpeta donde se guardarán las imágenes
-				$filePath = $uploadDir . basename($file['name']);
-			
-				if (move_uploaded_file($file['tmp_name'], $filePath)) {
-					$url = "/uploads/" . basename($file['name']);
-					echo json_encode(["url" => $url]); // CKEditor espera un JSON con la URL de la imagen
-				} else {
-					echo json_encode(["error" => "No se pudo subir la imagen."]);
-				}
+		if ($_FILES['upload']) {
+			$file = $_FILES['upload'];
+			$uploadDir = "uploads/"; // Carpeta donde se guardarán las imágenes
+			$filePath = $uploadDir . basename($file['name']);
+		
+			if (move_uploaded_file($file['tmp_name'], $filePath)) {
+				$url = "/uploads/" . basename($file['name']);
+				echo json_encode(["url" => $url]); // CKEditor espera un JSON con la URL de la imagen
+			} else {
+				echo json_encode(["error" => "No se pudo subir la imagen."]);
 			}
 		}
 	}
