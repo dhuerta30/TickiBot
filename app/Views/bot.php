@@ -240,6 +240,7 @@ document.getElementById("userInput").addEventListener("keypress", function(event
     if (event.key === "Enter") {
         event.preventDefault();
         sendMessage();
+        $("#artify-ajax-loader").hide();
         $("#artify_search_btn").click();
     }
 });
