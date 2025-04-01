@@ -29,6 +29,7 @@
 <?php require "layouts/footer.php"; ?>
 <script src="<?=$_ENV["BASE_URL"]?>js/sweetalert2.all.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ckfinder/3.5.2/ckfinder.js"></script>
 <script>
     $(document).on("artify_after_ajax_action", function(event, obj, data){
         var dataAction = obj.getAttribute('data-action');
@@ -63,35 +64,39 @@
         CKEDITOR.replace("bWVzc2FnZXMjJGNvbnRlbmlkb0AzZHNmc2RmKio5OTM0MzI0", {
             height: 300,
             toolbar: [
-            { name: "document", items: ["Source"] },
-            { name: "clipboard", items: ["Cut", "Copy", "Paste", "Undo", "Redo"] },
-            { name: "editing", items: ["Find", "Replace", "SelectAll"] },
-            {
-                name: "basicstyles",
-                items: ["Bold", "Italic", "Underline", "Strike", "RemoveFormat"]
-            },
-            {
-                name: "paragraph",
-                items: [
-                    "NumberedList",
-                    "BulletedList",
-                    "-",
-                    "Outdent",
-                    "Indent",
-                    "-",
-                    "Blockquote",
-                    "JustifyLeft",
-                    "JustifyCenter",
-                    "JustifyRight",
-                    "JustifyBlock"
-                ]
-            },
-            {
-                name: "insert",
-                items: ["Image", "Table", "HorizontalRule", "SpecialChar"]
-            },
-            { name: "tools", items: ["Maximize", "ShowBlocks"] }
-            ]
+                { name: "document", items: ["Source"] },
+                { name: "clipboard", items: ["Cut", "Copy", "Paste", "Undo", "Redo"] },
+                { name: "editing", items: ["Find", "Replace", "SelectAll"] },
+                {
+                    name: "basicstyles",
+                    items: ["Bold", "Italic", "Underline", "Strike", "RemoveFormat"]
+                },
+                {
+                    name: "paragraph",
+                    items: [
+                        "NumberedList",
+                        "BulletedList",
+                        "-",
+                        "Outdent",
+                        "Indent",
+                        "-",
+                        "Blockquote",
+                        "JustifyLeft",
+                        "JustifyCenter",
+                        "JustifyRight",
+                        "JustifyBlock"
+                    ]
+                },
+                {
+                    name: "insert",
+                    items: ["Image", "Table", "HorizontalRule", "SpecialChar"]
+                },
+                { name: "tools", items: ["Maximize", "ShowBlocks"] }
+            ],
+            filebrowserBrowseUrl: 'https://yourdomain.com/ckfinder/ckfinder.html', // Ajusta la URL
+            filebrowserUploadUrl: 'https://yourdomain.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
         });
+
+        CKFinder.setupCKEditor(editor);
     });
 </script>
