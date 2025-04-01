@@ -195,7 +195,9 @@ function sendMessage() {
     fetch("<?=$_ENV["BASE_URL"]?>mensajes", {
         method: "POST",
         body: JSON.stringify({ message: message }),
-        headers: { "Content-Type": "application/json" }
+        headers: { 
+            "Content-Type": "application/json" 
+        }
     })
     .then(response => response.json())
     .then(data => {
