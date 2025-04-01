@@ -2713,7 +2713,7 @@ class HomeController
 		$botResponse = "Lo siento, no puedo responder en este momento, inténtelo mas tarde.";
 
 		if (curl_errno($ch)) {
-			error_log("cURL Error: " . curl_error($ch)); // Guarda el error en logs
+			error_log("cURL Error: " . curl_error($ch));
 		} else {
 			$respuesta = json_decode($response, true);
 			if (!empty($respuesta['candidates'][0]['content']['parts'][0]['text'])) {
