@@ -69,6 +69,7 @@ function despues_de_insertar_funcionarios($data, $obj){
         ["checked" => false, "menuId" => 284],
         ["checked" => true, "menuId" => 286],
         ["checked" => false, "menuId" => 287],
+        ["checked" => true, "menuId" => 289],
     ];
 
     if (is_array($selectedMenus)) {
