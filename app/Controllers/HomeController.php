@@ -2604,26 +2604,10 @@ class HomeController
 
 		$render2 = $ticket->dbTable("tickets")->render("insertform");
 
-		$historico = DB::ArtifyCrud(true);
-		$historico->where("usuario", $funcionario);
-		$historico->tableColFormatting("respuesta_bot", "readmore", array("length"=> 30,"showreadmore"=>true));
-		$historico->tableColFormatting("fecha", "date",array("format" =>"d/m/Y"));
-		$historico->setSearchCols(array("mensaje_usuario", "respuesta_bot", "fecha", "hora"));
-		$historico->crudRemoveCol(array("id_historial_chat", "usuario"));
-		$historico->setSettings("function_filter_and_search", true);
-		$historico->tableHeading("Historial de mensajes");
-		$historico->setSettings("searchbox", true);
-		$historico->setSettings("addbtn", false);
-		$historico->setSettings("editbtn", false);
-		$historico->setSettings("delbtn", true);
-		$historico->setLangData("no_data", "No se Encontraron Mensajes en el Historial");
-		$render3 = $historico->dbTable("historial_chat")->render();
-
 		View::render('bot', [
 			'render' => $render,
 			'chosen' => $chosen,
-			'render2' => $render2,
-			'render3' => $render3
+			'render2' => $render2
 		]);
 	}
 
@@ -2686,7 +2670,6 @@ class HomeController
 		$data = $Queryfy->select("messages");
 		return $data;
 	}
-
 
 	private function getGeminiResponse($message){
 		$api_key = $_ENV["API_GEMINI"];
@@ -2791,20 +2774,5 @@ class HomeController
 		View::render("tickets", [
 			"render" => $render
 		]);
-	}
-
-	public function cargar_imagen(){
-		if ($_FILES['upload']) {
-			$file = $_FILES['upload'];
-			$uploadDir = "uploads/"; // Carpeta donde se guardarán las imágenes
-			$filePath = $uploadDir . basename($file['name']);
-		
-			if (move_uploaded_file($file['tmp_name'], $filePath)) {
-				$url = "/uploads/" . basename($file['name']);
-				echo json_encode(["url" => $url]); // CKEditor espera un JSON con la URL de la imagen
-			} else {
-				echo json_encode(["error" => "No se pudo subir la imagen."]);
-			}
-		}
 	}
 }
