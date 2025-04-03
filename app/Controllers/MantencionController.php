@@ -53,6 +53,7 @@ class MantencionController
             "observaciones",
             "estado"
         ));
+        $artify->tableHeading("Mantención Equipos");
         $artify->setSettings("searchbox", true);
         $artify->setSettings("actionFilterPosition", "top");
         $artify->fieldGroups("group1", array("nombre_funcionario","modelo", "marca_equipo", "hora_de_retiro"));
@@ -74,11 +75,18 @@ class MantencionController
 
         $artify->formFieldValue("estado", "En Proceso");
 
-        $artify->addFilter("FechaFilter", "Product Line", "fecha_mantencion", "date");
+        $artify->addFilter("FechaFilter", "Filtrar por Fecha Mantención", "fecha_mantencion", "date");
         $artify->setFilterSource("FechaFilter", "mantencion_equipos", "fecha_mantencion", "fecha_mantencion as pl", "db");
 
         $artify->fieldHideLable("estado");
         $artify->fieldDataAttr("estado", array("style"=>"display:none"));
+
+        $artify->relatedData('nombre_funcionario','usuario','id','nombre');
+
+        $artify->setSettings("printBtn", true);
+        $artify->setSettings("pdfBtn", true);
+        $artify->setSettings("csvBtn", true);
+        $artify->setSettings("excelBtn", true);
 
         $artify->crudRemoveCol(array("id_mantencion_equipos"));
         $artify->addCallback("before_insert", "insertar_mantencion_equipos");
