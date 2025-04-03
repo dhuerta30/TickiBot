@@ -29,6 +29,16 @@ if (isset($_REQUEST["artify_instance"])) {
     $fomplusajax->handleRequest();
 }
 
+function insertar_mantencion_equipos($data, $obj){
+    $emailBody = "";
+    $subject = "Correo Enviado para Mantención de Equipos";
+    $to = "daniel.telematico@gmail.com";
+
+    App\core\DB::PHPMail($to, "daniel.telematico@gmail.com", $subject, $emailBody);
+
+    return $data;
+}
+
 function registrar_funcionarios($data, $obj){
     $usuario = $data["usuario"]["usuario"];
     $rut = $data["usuario"]["rut"];
