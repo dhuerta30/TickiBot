@@ -2470,6 +2470,7 @@ class HomeController
 	public function perfil()
 	{
 		$id = $_SESSION['usuario'][0]["id"];
+		$rol = $_SESSION['usuario'][0]['idrol'];
         $token = $this->token;
 		$artify = DB::ArtifyCrud();
 		$artify->fieldHideLable("id");
@@ -2485,9 +2486,15 @@ class HomeController
 		$artify->fieldRenameLable("nombre", "Nombre Completo");
 		$artify->fieldRenameLable("email", "Correo electrónico");
 		$artify->fieldRenameLable("password", "Clave de acceso");
-		$artify->fieldRenameLable("idrol", "Tipo Usuario");
+		
 		$artify->relatedData('idrol','rol','idrol','nombre_rol');
 		$artify->formFields(array("id","nombre","email","password","usuario", "idrol", "avatar"));
+		if($rol == "2"){
+			$artify->fieldHideLable("idrol");
+			$artify->fieldDataAttr("idrol", array("style"=>"display:none"));
+		} else {
+			$artify->fieldRenameLable("idrol", "Tipo Usuario");
+		}
         $artify->formStaticFields("token_form", "html", "<input type='hidden' name='auth_token' value='" . $token . "' />");
 		$artify->fieldDataAttr("password", array("value"=> "", "placeholder" => "*****", "autocomplete" => "new-password"));
 		$artify->setPK("id");
