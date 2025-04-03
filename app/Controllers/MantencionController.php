@@ -54,6 +54,7 @@ class MantencionController
             "estado"
         ));
         $artify->setSettings("searchbox", true);
+        $artify->setSettings("actionFilterPosition", "top");
         $artify->fieldGroups("group1", array("nombre_funcionario","modelo", "marca_equipo", "hora_de_retiro"));
         $artify->fieldGroups("group2", array("fecha_mantencion","servicio", "tipo_disco_duro", "cantidad_ram"));
         $artify->fieldGroups("group3", array("procesador","tecnico_encargado", "ip"));
@@ -72,6 +73,9 @@ class MantencionController
         ), "", "","array");
 
         $artify->formFieldValue("estado", "En Proceso");
+
+        $artify->addFilter("FechaFilter", "Product Line", "fecha_mantencion", "date");
+        $artify->setFilterSource("FechaFilter", "mantencion_equipos", "fecha_mantencion", "fecha_mantencion as pl", "db");
 
         $artify->fieldHideLable("estado");
         $artify->fieldDataAttr("estado", array("style"=>"display:none"));
