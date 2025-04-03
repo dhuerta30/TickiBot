@@ -28,7 +28,7 @@ class HistorialMensajesController
 
         $historico = DB::ArtifyCrud();
 		$historico->where("usuario", $funcionario);
-		$historico->tableColFormatting("respuesta_bot", "readmore", array("length"=> 30,"showreadmore"=>true));
+		$historico->tableColFormatting("respuesta_bot", "readmore", array("length"=> 30, "showreadmore"=> true));
 		$historico->tableColFormatting("fecha", "date",array("format" =>"d/m/Y"));
 		$historico->setSearchCols(array("mensaje_usuario", "respuesta_bot", "fecha", "hora"));
 		$historico->crudRemoveCol(array("id_historial_chat", "usuario"));
