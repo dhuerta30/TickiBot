@@ -26,21 +26,33 @@ class HistorialMensajesController
     {
         $funcionario = $_SESSION["usuario"][0]["id"];
 
-        $historico = DB::ArtifyCrud();
-		$historico->where("usuario", $funcionario);
-		$historico->tableColFormatting("respuesta_bot", "readmore", array("length"=> 30, "showreadmore"=> true));
-		$historico->tableColFormatting("fecha", "date",array("format" =>"d/m/Y"));
-		$historico->setSearchCols(array("mensaje_usuario", "respuesta_bot", "fecha", "hora"));
-		$historico->crudRemoveCol(array("id_historial_chat", "usuario"));
-		$historico->setSettings("function_filter_and_search", true);
-		$historico->tableHeading("Historial de mensajes");
-		$historico->setSettings("searchbox", true);
-		$historico->setSettings("addbtn", false);
-		$historico->setSettings("editbtn", false);
-		$historico->setSettings("delbtn", true);
-        $historico->dbOrderBy("fecha desc");
-		$historico->setLangData("no_data", "No se Encontraron Mensajes en el Historial");
-		$render = $historico->dbTable("historial_chat")->render();
+        $settings["script_url"] = $_ENV['URL_ArtifyCrud'];
+        $_ENV["url_artify"] = "artify/artifycrud.php";
+        $settings["url_artify"] = $_ENV["url_artify"];
+        $settings["downloadURL"] = $_ENV['DOWNLOAD_URL'];
+        $settings["hostname"] = $_ENV['DB_HOST'];
+        $settings["database"] = $_ENV['DB_NAME'];
+        $settings["username"] = $_ENV['DB_USER'];
+        $settings["password"] = $_ENV['DB_PASS'];
+        $settings["dbtype"] = $_ENV['DB_TYPE'];
+        $settings["characterset"] = $_ENV["CHARACTER_SET"];
+
+        $autoSuggestion = true;
+        $artify = DB::ArtifyCrud(false, "", "", $autoSuggestion, $settings);
+		$artify->where("usuario", $funcionario);
+		$artify->tableColFormatting("respuesta_bot", "readmore", array("length"=> 30, "showreadmore"=> true));
+		$artify->tableColFormatting("fecha", "date",array("format" =>"d/m/Y"));
+		$artify->setSearchCols(array("mensaje_usuario", "respuesta_bot", "fecha", "hora"));
+		$artify->crudRemoveCol(array("id_historial_chat", "usuario"));
+		$artify->setSettings("function_filter_and_search", true);
+		$artify->tableHeading("Historial de mensajes");
+		$artify->setSettings("searchbox", true);
+		$artify->setSettings("addbtn", false);
+		$artify->setSettings("editbtn", false);
+		$artify->setSettings("delbtn", true);
+        $artify->dbOrderBy("fecha desc");
+		$artify->setLangData("no_data", "No se Encontraron Mensajes en el Historial");
+		$render = $artify->dbTable("historial_chat")->render();
 
         View::render('HistorialMensajes', [
             'render' => $render
