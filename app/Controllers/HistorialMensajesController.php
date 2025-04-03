@@ -19,7 +19,7 @@ class HistorialMensajesController
         if (!isset($Sesusuario)) {
             Redirect::to("login");
         }
-        $this->token = Token::generateFormToken('send_message');        
+        $this->token = Token::generateFormToken('send_message');  
     }
 
     public function index()
