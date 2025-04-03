@@ -45,7 +45,7 @@ class HistorialMensajesController
 		$artify->setSearchCols(array("mensaje_usuario", "respuesta_bot", "fecha", "hora"));
 		$artify->crudRemoveCol(array("id_historial_chat", "usuario"));
 		$artify->setSettings("function_filter_and_search", true);
-		$artify->tableHeading("Historial de mensajes");
+		$artify->tableHeading("Historial de Mensajes");
 		$artify->setSettings("searchbox", true);
         $artify->setSettings("showAllSearch", false);
 		$artify->setSettings("addbtn", false);
