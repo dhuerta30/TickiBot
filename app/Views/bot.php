@@ -57,8 +57,8 @@
                                             <?php endforeach; ?>
                                         
                                         <?php endif; ?>
-
                                     </div>
+                                    
                                     <div class="chat-footer">
                                         <button class="btn btn-danger clear_chat" title="Limpiar todo el Historial"><i class="fa fa-trash"></i></button>
                                         <input type="text" id="userInput" class="form-control" placeholder="Escribe tu mensaje y presiona enter...">
