@@ -208,7 +208,7 @@ Class ArtifyHelper {
                 $pagination .= "<ul class=\"pagination\">";
 
                 if ($page > 1)
-                    $pagination .= "<li class=\"page-item\"><a class='artify-actions page-link artify-page' data-rendertype='CRUD' data-action='pagination' href=\"javascript:;\" data-page=" . $prev . ">« " . $lang["prev"] . "</a></li>";
+                    $pagination .= "<li class=\"page-item\"><a class='artify-actions page-link artify-page' data-rendertype='CRUD' data-action='pagination' href=\"javascript:;\" data-page=" . $prev . ">" . $lang["prev"] . "</a></li>";
 
                 if ($lastpage < 7 + ($adjacents * 2)) { 
                     for ($counter = 1; $counter <= $lastpage; $counter++) {
@@ -287,7 +287,7 @@ Class ArtifyHelper {
                 $pagination .= "<ul class=\"pagination\">";
 
                 if ($page > 1)
-                    $pagination .= "<li class=\"page-item\"><a class='artify-actions page-link artify-page' data-rendertype='SQL' data-action='pagination' href=\"javascript:;\" data-page=" . $prev . ">« " . $lang["prev"] . "</a></li>";
+                    $pagination .= "<li class=\"page-item\"><a class='artify-actions page-link artify-page' data-rendertype='SQL' data-action='pagination' href=\"javascript:;\" data-page=" . $prev . ">" . $lang["prev"] . "</a></li>";
 
                 if ($lastpage < 7 + ($adjacents * 2)) { 
                     for ($counter = 1; $counter <= $lastpage; $counter++) {
@@ -365,7 +365,7 @@ Class ArtifyHelper {
                 $pagination .= "<ul class=\"pagination\">";
 
                 if ($page > 1)
-                    $pagination .= "<li class=\"page-item\"><a class='page-link artify-page' data-rendertype='ARRAY' data-action='pagination' href=\"javascript:;\" data-page=" . $prev . ">« " . $lang["prev"] . "</a></li>";
+                    $pagination .= "<li class=\"page-item\"><a class='page-link artify-page' data-rendertype='ARRAY' data-action='pagination' href=\"javascript:;\" data-page=" . $prev . ">" . $lang["prev"] . "</a></li>";
 
                 if ($lastpage < 7 + ($adjacents * 2)) { 
                     for ($counter = 1; $counter <= $lastpage; $counter++) {
