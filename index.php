@@ -21,7 +21,7 @@ $router->get('/modulos', 'HomeController@modulos');
 $router->get('/tickets', 'HomeController@tickets');
 $router->get('/eliminar_historial/{usuario}', 'HomeController@eliminar_historial');
 $router->get('/bot', 'HomeController@bot');
-$router->get('/chat', 'HomeController@historico_chat');
+$router->get('/Respuestas_bot', 'HomeController@historico_chat');
 $router->get('/usuarios', 'HomeController@usuarios');
 $router->get('/perfil', 'HomeController@perfil');
 $router->get('/respaldos', 'HomeController@respaldos');
