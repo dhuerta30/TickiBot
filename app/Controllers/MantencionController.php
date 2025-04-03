@@ -71,6 +71,11 @@ class MantencionController
             "Elena Garrido Santibañez" => "Elena Garrido Santibañez"
         ), "", "","array");
 
+        $artify->formFieldValue("estado", "En Proceso");
+
+        $artify->fieldHideLable("estado");
+        $artify->fieldDataAttr("estado", array("style"=>"display:none"));
+
         $artify->crudRemoveCol(array("id_mantencion_equipos"));
         $artify->addCallback("before_insert", "insertar_mantencion_equipos");
         $render = $artify->dbTable("mantencion_equipos")->render();
