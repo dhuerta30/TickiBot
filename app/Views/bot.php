@@ -22,7 +22,17 @@
                                 <div class="chat-container mb-3">
                                     <div class="chat-header">Tickibot - Soporte en tiempo real con IA</div>
 
-                                    <input type="text" id="search-messages" class="form-control mt-2 mb-2" placeholder="Buscar mensajes...">
+                                   <div class="row">
+                                        <div class="col-md-8">
+                                            <input type="text" id="search-messages" class="form-control mt-2 mb-2" placeholder="Buscar mensajes...">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="date" class="form-control mt-2">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button class="btn btn-primary btn-block buscar_mensajes mt-2"><i class="fa fa-search"></i></button>
+                                        </div>
+                                   </div>
 
                                     <div id="chatbox">
                                         <?php 
