@@ -87,6 +87,7 @@ class MantencionController
         $artify->setSettings("pdfBtn", true);
         $artify->setSettings("csvBtn", true);
         $artify->setSettings("excelBtn", true);
+        $artify->setLangData("no_data", "No se encontraron mantenciones");
 
         $artify->crudRemoveCol(array("id_mantencion_equipos"));
         $artify->addCallback("before_insert", "insertar_mantencion_equipos");
