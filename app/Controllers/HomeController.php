@@ -2721,6 +2721,8 @@ class HomeController
 		$artify->setSettings('editbtn', true);
 		$artify->setSettings('delbtn', true);
 		$artify->buttonHide("submitBtnSaveBack");
+		$artify->crudRemoveCol(array("id"));
+		$artify->setSearchCols(array("user_message", "bot_response", "contenido"));
 		$artify->setSettings("function_filter_and_search", true);
 		$artify->colRename("user_message", "Mensajes del usuario");
 		$artify->colRename("bot_response", "Respuesta del Bot");
