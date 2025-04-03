@@ -38,6 +38,7 @@ class HistorialMensajesController
 		$historico->setSettings("addbtn", false);
 		$historico->setSettings("editbtn", false);
 		$historico->setSettings("delbtn", true);
+        $historico->dbOrderBy("fecha desc");
 		$historico->setLangData("no_data", "No se Encontraron Mensajes en el Historial");
 		$render = $historico->dbTable("historial_chat")->render();
 
