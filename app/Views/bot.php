@@ -292,7 +292,6 @@ document.addEventListener("click", resetInactivityTimer);
 // Iniciar temporizador al cargar la página
 resetInactivityTimer();
 
-
 $(document).on("click", ".clear_chat", function(){
     Swal.fire({
         icon: "warning",
