@@ -37,6 +37,23 @@ class MantencionController
 
         $autoSuggestion = true;
         $artify = DB::ArtifyCrud(false, "", "", $autoSuggestion, $settings);
+        $artify->setSettings("function_filter_and_search", true);
+        $artify->setSearchCols(array(
+            "nombre_funcionario", 
+            "modelo", 
+            "marca_equipo", 
+            "hora_de_retiro", 
+            "fecha_mantencion", 
+            "servicio", 
+            "tipo_disco_duro", 
+            "cantidad_ram", 
+            "procesador",
+            "tecnico_encargado", 
+            "ip",
+            "observaciones",
+            "estado"
+        ));
+        $artify->setSettings("searchbox", true);
         $artify->fieldGroups("group1", array("nombre_funcionario","modelo", "marca_equipo", "hora_de_retiro"));
         $artify->fieldGroups("group2", array("fecha_mantencion","servicio", "tipo_disco_duro", "cantidad_ram"));
         $artify->fieldGroups("group3", array("procesador","tecnico_encargado", "ip"));
