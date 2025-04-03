@@ -47,6 +47,7 @@ class HistorialMensajesController
 		$artify->setSettings("function_filter_and_search", true);
 		$artify->tableHeading("Historial de mensajes");
 		$artify->setSettings("searchbox", true);
+        $artify->setSettings("showAllSearch", false);
 		$artify->setSettings("addbtn", false);
 		$artify->setSettings("editbtn", false);
 		$artify->setSettings("delbtn", true);
