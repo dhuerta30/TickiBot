@@ -23,11 +23,8 @@
                                     <div class="chat-header">Tickibot - Soporte en tiempo real con IA</div>
 
                                    <div class="row">
-                                        <div class="col-md-8">
+                                        <div class="col-md-10">
                                             <input type="text" id="search-messages" class="form-control mt-2 mb-2" placeholder="Buscar mensajes...">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="date" class="form-control mt-2">
                                         </div>
                                         <div class="col-md-2">
                                             <button class="btn btn-primary btn-block buscar_mensajes mt-2"><i class="fa fa-search"></i></button>
@@ -58,7 +55,7 @@
                                         
                                         <?php endif; ?>
                                     </div>
-                                    
+
                                     <div class="chat-footer">
                                         <button class="btn btn-danger clear_chat" title="Limpiar todo el Historial"><i class="fa fa-trash"></i></button>
                                         <input type="text" id="userInput" class="form-control" placeholder="Escribe tu mensaje y presiona enter...">
