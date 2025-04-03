@@ -46,9 +46,9 @@ class MantencionController
             "fecha_mantencion", 
             "servicio", 
             "tipo_disco_duro", 
-            "cantidad_ram", 
+            "cantidad_ram",
             "procesador",
-            "tecnico_encargado", 
+            "tecnico_encargado",
             "ip",
             "observaciones",
             "estado"
@@ -60,7 +60,7 @@ class MantencionController
         $artify->fieldGroups("group3", array("procesador","tecnico_encargado", "ip"));
         $artify->buttonHide("submitBtnSaveBack");
         $artify->fieldTypes("estado", "select");
-        $artify->fieldDataBinding("estado", array("Entregado" => "Entragado", "En Proceso" => "En Proceso"), "", "","array");
+        $artify->fieldDataBinding("estado", array("Entregado" => "Entragado", "En Proceso" => "En Proceso"), "", "", "array");
 
         $artify->fieldTypes("tecnico_encargado", "select");
         $artify->fieldDataBinding("tecnico_encargado", array(
