@@ -40,7 +40,7 @@ class MantencionController
         $artify->setSettings("function_filter_and_search", true);
         $artify->setSearchCols(array(
             "nombre_funcionario", 
-            "modelo", 
+            "modelo",
             "marca_equipo", 
             "hora_de_retiro", 
             "fecha_mantencion", 
