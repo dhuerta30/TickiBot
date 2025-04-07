@@ -52,6 +52,8 @@
                                     </div>
 
                                     <div class="chat-footer">
+                                        <button class="btn btn-info" id="play"><i class="fa fa-play"></i></button>
+                                        <button class="btn btn-danger" id="stop"><i class="fa fa-stop"></i></button>
                                         <button class="btn btn-danger clear_chat" title="Limpiar todo el Historial"><i class="fa fa-trash"></i></button>
                                         <input type="text" id="userInput" class="form-control" placeholder="Escribe tu mensaje y presiona enter...">
                                         <button class="btn btn-primary" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
@@ -99,27 +101,39 @@
 <script src="<?=$_ENV["BASE_URL"]?>js/sweetalert2.all.min.js"></script>
 <script>
 
+    let ultimoTexto = "";     // Guarda el texto que fue clickeado
+    let utterance = null;     // Objeto de tipo SpeechSynthesisUtterance
+
+    // Función para leer
     function decir(texto) {
-        speechSynthesis.cancel(); // Cancelar cualquier lectura anterior
-        speechSynthesis.speak(new SpeechSynthesisUtterance(texto));
+        // Cancelar si ya está leyendo
+        speechSynthesis.cancel();
+
+        // Guardar texto actual y crear utterance
+        ultimoTexto = texto;
+        utterance = new SpeechSynthesisUtterance(texto);
+        speechSynthesis.speak(utterance);
     }
 
-    // Delegación de eventos: escuchar clicks dentro del chatbox
+    // Al hacer clic en un mensaje del chat
     document.getElementById('chatbox').addEventListener("click", function (e) {
-        // Buscar el elemento con texto al hacer clic
         let target = e.target;
-
-        // Si el click fue sobre una imagen o el contenedor, buscar el texto cercano
-        if (target.classList.contains("message")) {
-            decir(target.innerText.trim());
-        } 
-        // Si el click fue sobre un hijo (como <div> o <img>), buscar el contenedor padre .message
-        else {
-            let messageEl = target.closest(".message");
-            if (messageEl) {
-                decir(messageEl.innerText.trim());
-            }
+        let messageEl = target.closest(".message");
+        if (messageEl) {
+            decir(messageEl.innerText.trim());
         }
+    });
+
+    // Botón Play: vuelve a leer el último texto
+    document.getElementById('play').addEventListener("click", () => {
+        if (ultimoTexto) {
+            decir(ultimoTexto);
+        }
+    });
+
+    // Botón Stop: detiene la lectura
+    document.getElementById('stop').addEventListener("click", () => {
+        speechSynthesis.cancel();
     });
 
     document.addEventListener("DOMContentLoaded", function() {
