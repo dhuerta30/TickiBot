@@ -54,6 +54,8 @@
                                     <div class="chat-footer">
                                         <button class="btn btn-info" id="play"><i class="fa fa-play"></i></button>
                                         <button class="btn btn-danger" id="stop"><i class="fa fa-stop"></i></button>
+                                        <button class="btn btn-warning" id="pause"><i class="fa fa-pause"></i></button>
+                                        <button class="btn btn-success" id="resume"><i class="fa fa-play-circle"></i></button>
                                         <button class="btn btn-danger clear_chat" title="Limpiar todo el Historial"><i class="fa fa-trash"></i></button>
                                         <input type="text" id="userInput" class="form-control" placeholder="Escribe tu mensaje y presiona enter...">
                                         <button class="btn btn-primary" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
@@ -118,7 +120,7 @@
     // Al hacer clic en un mensaje del chat
     document.getElementById('chatbox').addEventListener("click", function (e) {
         let target = e.target;
-        let messageEl = target.closest(".message");
+        let messageEl = target.closest(".message.bot");
         if (messageEl) {
             decir(messageEl.innerText.trim());
         }
@@ -135,6 +137,19 @@
     document.getElementById('stop').addEventListener("click", () => {
         speechSynthesis.cancel();
     });
+
+    document.getElementById('pause').addEventListener("click", () => {
+        if (speechSynthesis.speaking && !speechSynthesis.paused) {
+            speechSynthesis.pause();
+        }
+    });
+
+    document.getElementById('resume').addEventListener("click", () => {
+        if (speechSynthesis.paused) {
+            speechSynthesis.resume();
+        }
+    });
+
 
     document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("search-messages").addEventListener("keyup", function() {
