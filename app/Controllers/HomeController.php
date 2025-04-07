@@ -2547,20 +2547,7 @@ class HomeController
 	}
 
 	public function bot(){
-
-		$settings["script_url"] = $_ENV['URL_ArtifyCrud'];
-        $_ENV["url_artify"] = "artify/artifycrud.php";
-        $settings["url_artify"] = $_ENV["url_artify"];
-        $settings["downloadURL"] = $_ENV['DOWNLOAD_URL'];
-        $settings["hostname"] = $_ENV['DB_HOST'];
-        $settings["database"] = $_ENV['DB_NAME'];
-        $settings["username"] = $_ENV['DB_USER'];
-        $settings["password"] = $_ENV['DB_PASS'];
-        $settings["dbtype"] = $_ENV['DB_TYPE'];
-        $settings["characterset"] = $_ENV["CHARACTER_SET"];
-
-        $autoSuggestion = true;
-        $artify = DB::ArtifyCrud(false, "", "", $autoSuggestion, $settings);
+		$artify = DB::ArtifyCrud();
 		$artify->addPlugin("chosen");
 		$artify->fieldCssClass("user_message", array("frases"));
 		$artify->formFields(array("user_message"));
@@ -2729,7 +2716,19 @@ class HomeController
 	}
 
 	public function historico_chat(){
-		$artify = DB::ArtifyCrud();
+		$settings["script_url"] = $_ENV['URL_ArtifyCrud'];
+        $_ENV["url_artify"] = "artify/artifycrud.php";
+        $settings["url_artify"] = $_ENV["url_artify"];
+        $settings["downloadURL"] = $_ENV['DOWNLOAD_URL'];
+        $settings["hostname"] = $_ENV['DB_HOST'];
+        $settings["database"] = $_ENV['DB_NAME'];
+        $settings["username"] = $_ENV['DB_USER'];
+        $settings["password"] = $_ENV['DB_PASS'];
+        $settings["dbtype"] = $_ENV['DB_TYPE'];
+        $settings["characterset"] = $_ENV["CHARACTER_SET"];
+
+        $autoSuggestion = true;
+        $artify = DB::ArtifyCrud(false, "", "", $autoSuggestion, $settings);
 		$artify->tableHeading("Lista de Mensajes");
 		$artify->setSettings("encryption", true);
 		$artify->setSettings("searchbox", true);
