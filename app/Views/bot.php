@@ -7,6 +7,10 @@
     .chosen-container {
         width: 100%!important;
     }
+
+    .message {
+        cursor: pointer;
+    }
 </style>
 <div class="content-wrapper">
     <section class="content">
@@ -103,6 +107,29 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="<?=$_ENV["BASE_URL"]?>js/sweetalert2.all.min.js"></script>
 <script>
+
+    function decir(texto) {
+        speechSynthesis.cancel(); // Cancelar cualquier lectura anterior
+        speechSynthesis.speak(new SpeechSynthesisUtterance(texto));
+    }
+
+    // Delegación de eventos: escuchar clicks dentro del chatbox
+    document.getElementById('chatbox').addEventListener("click", function (e) {
+        // Buscar el elemento con texto al hacer clic
+        let target = e.target;
+
+        // Si el click fue sobre una imagen o el contenedor, buscar el texto cercano
+        if (target.classList.contains("message")) {
+            decir(target.innerText.trim());
+        } 
+        // Si el click fue sobre un hijo (como <div> o <img>), buscar el contenedor padre .message
+        else {
+            let messageEl = target.closest(".message");
+            if (messageEl) {
+                decir(messageEl.innerText.trim());
+            }
+        }
+    });
 
     document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("search-messages").addEventListener("keyup", function() {
