@@ -37,6 +37,7 @@ class MantencionController
 
         $autoSuggestion = true;
         $artify = DB::ArtifyCrud(false, "", "", $autoSuggestion, $settings);
+        $artify->addPlugin("chosen");
         $artify->setSettings("function_filter_and_search", true);
         $artify->setSearchCols(array(
             "nombre_funcionario", 
@@ -60,8 +61,35 @@ class MantencionController
         $artify->fieldGroups("group2", array("fecha_mantencion","servicio", "tipo_disco_duro", "cantidad_ram"));
         $artify->fieldGroups("group3", array("procesador","tecnico_encargado", "ip"));
         $artify->buttonHide("submitBtnSaveBack");
+        $artify->fieldCssClass("nombre_funcionario", array("nombre_funcionario"));
+        $artify->fieldCssClass("tecnico_encargado", array("tecnico_encargado"));
+        $artify->fieldCssClass("marca_equipo", array("marca_equipo"));
         $artify->fieldTypes("estado", "select");
         $artify->fieldDataBinding("estado", array("Entregado" => "Entragado", "En Proceso" => "En Proceso"), "", "", "array");
+
+        $artify->fieldTypes("marca_equipo", "select");
+        $artify->fieldDataBinding("marca_equipo", array(
+            "Dell" => "Dell",
+            "HP" => "HP",
+            "Lenovo" => "Lenovo",
+            "Acer" => "Acer",
+            "Asus" => "Asus",
+            "Apple" => "Apple",
+            "MSI" => "MSI",
+            "Samsung" => "Samsung",
+            "Toshiba" => "Toshiba",
+            "Sony" => "Sony (VAIO)",
+            "Razer" => "Razer",
+            "Alienware" => "Alienware",
+            "Gigabyte" => "Gigabyte",
+            "Microsoft" => "Microsoft (Surface)",
+            "Huawei" => "Huawei",
+            "Xiaomi" => "Xiaomi",
+            "Chuwi" => "Chuwi",
+            "Panasonic" => "Panasonic (Toughbook)",
+            "Fujitsu" => "Fujitsu",
+            "LG" => "LG"
+        ), "", "", "array");
 
         $artify->fieldTypes("tecnico_encargado", "select");
         $artify->fieldDataBinding("tecnico_encargado", array(
@@ -70,7 +98,8 @@ class MantencionController
             "Leonardo Antonio Martinez Vera" => "Leonardo Antonio Martinez Vera",
             "Franco Matias Carrasco Azocar" => "Franco Matias Carrasco Azocar",
             "Fabian Geovanni Pacheco Villalobos" => "Fabian Geovanni Pacheco Villalobos",
-            "Elena Garrido Santibañez" => "Elena Garrido Santibañez"
+            "Elena Garrido Santibañez" => "Elena Garrido Santibañez",
+            "Jorge Nicolas Berrios Cornejo" => "Jorge Nicolas Berrios Cornejo"
         ), "", "","array");
 
         $artify->formFieldValue("estado", "En Proceso");
@@ -92,8 +121,10 @@ class MantencionController
         $artify->crudRemoveCol(array("id_mantencion_equipos"));
         $artify->addCallback("before_insert", "insertar_mantencion_equipos");
         $render = $artify->dbTable("mantencion_equipos")->render();
+        $chosen = $artify->loadPluginJsCode("chosen",".nombre_funcionario, .tecnico_encargado, .marca_equipo");
         View::render('Mantencion', [
-            'render' => $render
+            'render' => $render,
+            'chosen' => $chosen
         ]);
     }
 }

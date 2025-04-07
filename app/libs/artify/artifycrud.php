@@ -30,7 +30,7 @@ if (isset($_REQUEST["artify_instance"])) {
 }
 
 function insertar_mantencion_equipos($data, $obj){
-    $emailBody = "";
+    $emailBody = "Prueba de mensaje";
     $subject = "Correo Enviado para Mantención de Equipos";
     $to = "daniel.telematico@gmail.com";
 
