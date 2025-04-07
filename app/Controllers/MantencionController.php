@@ -118,6 +118,8 @@ class MantencionController
         $artify->setSettings("excelBtn", true);
         $artify->setLangData("no_data", "No se encontraron mantenciones");
 
+        $artify->fieldAttributes("observaciones", array("style"=>"min-height: 200px; max-height: 200px;"));
+
         $artify->crudRemoveCol(array("id_mantencion_equipos"));
         $artify->addCallback("before_insert", "insertar_mantencion_equipos");
         $render = $artify->dbTable("mantencion_equipos")->render();
