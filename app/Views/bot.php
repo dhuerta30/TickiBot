@@ -108,10 +108,10 @@
 
     // Función para leer
     function decir(texto) {
-        // Cancelar si ya está leyendo
-        speechSynthesis.cancel();
+        if (speechSynthesis.speaking) {
+            speechSynthesis.cancel(); // o puedes usar pause() si prefieres
+        }
 
-        // Guardar texto actual y crear utterance
         ultimoTexto = texto;
         utterance = new SpeechSynthesisUtterance(texto);
         speechSynthesis.speak(utterance);
