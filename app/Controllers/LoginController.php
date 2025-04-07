@@ -46,7 +46,7 @@ class LoginController {
 					<div class="card px-5 py-5 bg-light shadow-lg" id="form1">
 						<p class="mb-3 mt-3 text-center font-weight-bold">Acceso Funcionarios</p>
 						<center><img class="w-25" src="'.$_ENV["BASE_URL"].'theme/img/boot.png"></center>
-						<p class="mb-3 mt-3 text-center font-weight-bold">Tickibot Soporte con IA en tiempo Real</p>
+						<p class="mb-3 mt-3 text-center font-weight-bold">Tickibot Soporte en tiempo Real</p>
 						<div class="form-data" v-if="!submitted">
 							<div class="form-group text-center">
 									<label>¿Cómo desea ingresar al sistema?</label>
@@ -126,7 +126,7 @@ class LoginController {
 					<div class="card px-5 py-5 bg-light shadow-lg" id="form1">
 						<p class="mb-3 mt-3 text-center font-weight-bold">Recuperar Clave Funcionarios</p>
 						<center><img class="w-25" src="'.$_ENV["BASE_URL"].'theme/img/boot.png"></center>
-						<p class="mb-3 mt-3 text-center font-weight-bold">Tickibot Soporte con IA en tiempo Real</p>
+						<p class="mb-3 mt-3 text-center font-weight-bold">Tickibot Soporte en tiempo Real</p>
 						<div class="form-data" v-if="!submitted">
 							<div class="form-group">
 								<label>Correo</label>
