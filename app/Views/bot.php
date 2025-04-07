@@ -120,7 +120,7 @@
     // Al hacer clic en un mensaje del chat
     document.getElementById('chatbox').addEventListener("click", function (e) {
         let target = e.target;
-        let messageEl = target.closest(".message.bot");
+        let messageEl = target.closest(".message");
         if (messageEl) {
             decir(messageEl.innerText.trim());
         }
