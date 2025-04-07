@@ -19,7 +19,7 @@ class MantencionController
         if (!isset($Sesusuario)) {
             Redirect::to("login");
         }
-        $this->token = Token::generateFormToken('send_message');        
+        $this->token = Token::generateFormToken('send_message');
     }
 
     public function index()
@@ -111,7 +111,7 @@ class MantencionController
         $artify->fieldDataAttr("estado", array("style"=>"display:none"));
 
         $artify->relatedData('nombre_funcionario','usuario','id','nombre');
-
+        $artify->tableColFormatting("fecha_mantencion", "date", array("format" =>"d/m/Y"));
         $artify->setSettings("editbtn", true);
         $artify->setSettings("delbtn", true);
         $artify->setSettings("printBtn", true);
