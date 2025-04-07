@@ -112,6 +112,8 @@ class MantencionController
 
         $artify->relatedData('nombre_funcionario','usuario','id','nombre');
 
+        $artify->setSettings("editbtn", true);
+        $artify->setSettings("delbtn", true);
         $artify->setSettings("printBtn", true);
         $artify->setSettings("pdfBtn", true);
         $artify->setSettings("csvBtn", true);
