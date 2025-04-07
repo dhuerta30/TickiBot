@@ -122,6 +122,9 @@ class MantencionController
 
         $artify->fieldAttributes("observaciones", array("style"=>"min-height: 200px; max-height: 200px;"));
 
+        $artify->tableColFormatting("estado", "replace", array("En Proceso" =>"<div class='badge badge-success'>En Proceso</div>"));
+        $artify->tableColFormatting("estado", "replace", array("Finalizado" =>"<div class='badge badge-danger'>Finalizado</div>"));
+
         $artify->crudRemoveCol(array("id_mantencion_equipos"));
         $artify->addCallback("before_insert", "insertar_mantencion_equipos");
         $render = $artify->dbTable("mantencion_equipos")->render();
